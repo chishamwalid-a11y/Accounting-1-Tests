@@ -3,732 +3,738 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>اختبارات محاسبة مالية (1) — لكل قسم + اختبار شامل</title>
+<title>امتحانات محاسبة مالية (1) — مستوى الميد-تيرم + تصحيح ذكي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0b1f3a; --navy2:#0f2946; --navy3:#143557; --navy-line:#1e3a8a;
-  --orange:#ea580c; --orange2:#f97316; --orange3:#fb923c; --orange-soft:rgba(249,115,22,.14);
-  --ok:#16a34a; --bad:#ef4444;
-  --txt:#e8eef7; --txt-dim:#93a9c4;
+  --navy:#0b1f3a;--navy2:#0f2946;--navy3:#143557;--line:#1e3a8a;--line2:#2a4a75;
+  --orange:#ea580c;--orange2:#f97316;--orange3:#fb923c;--cream:#ffd7b0;
+  --ink:#e8f0fa;--mut:#9fb6d2;--mut2:#6f8bab;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;padding:0;min-height:100vh;
-  font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;
-  background:linear-gradient(180deg,#071427 0%,#0b1f3a 45%,#081a31 100%);
-  color:var(--txt);direction:rtl;line-height:1.9;font-size:16px;
-}
-.wrap{max-width:900px;margin:0 auto;padding:0 18px}
-.view{display:none}
-.view.on{display:block}
-
-/* ====== HEADER ====== */
-.top{padding:34px 0 26px;text-align:center;position:relative;overflow:hidden;
-     background:linear-gradient(135deg,#0b1f3a 0%,#1e3a8a 55%,#ea580c 130%)}
-.top:after{content:"";position:absolute;top:-70px;left:-70px;width:220px;height:220px;border-radius:50%;background:rgba(249,115,22,.18)}
-.top .pill{display:inline-block;border:1px solid rgba(249,115,22,.55);color:#ffd7b0;background:rgba(249,115,22,.14);
-           padding:4px 16px;border-radius:999px;font-size:12.5px;font-weight:800;margin-bottom:12px;position:relative;z-index:2}
-.top h1{margin:0 0 8px;font-size:31px;font-weight:900;line-height:1.4;position:relative;z-index:2}
-.top p{margin:0 auto;max-width:640px;font-size:14.5px;color:#c9d8ec;position:relative;z-index:2}
-.top .sum{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;position:relative;z-index:2}
-.top .sum div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:7px 16px;font-size:13px;font-weight:800;color:#e8eef7}
-.top .sum div b{color:var(--orange3)}
-
-/* ====== HOME GRID ====== */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:24px 0 8px}
-.qcard-home{
-  background:linear-gradient(160deg,#0f2946,#0d2440);border:1.5px solid #1b3a63;border-radius:18px;
-  padding:18px 18px 16px;cursor:pointer;transition:.2s;position:relative;overflow:hidden;text-align:right;
-}
-.qcard-home:hover{transform:translateY(-4px);border-color:var(--orange2);box-shadow:0 16px 30px -16px rgba(249,115,22,.5)}
-.qcard-home .n{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:16px;
-               background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;margin-bottom:12px}
-.qcard-home h3{margin:0 0 4px;font-size:16px;font-weight:900;color:#fff;line-height:1.5}
-.qcard-home p{margin:0;font-size:13px;color:var(--txt-dim)}
-.qcard-home .meta{margin-top:12px;display:flex;gap:8px;align-items:center;font-size:12px;font-weight:800;color:var(--orange3)}
-.qcard-home .meta i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--orange2);font-style:normal}
-.qcard-home.big{grid-column:1/-1;background:linear-gradient(120deg,#143557,#1e3a8a 45%,#7c2d12 160%);border-color:var(--orange2)}
-.qcard-home.big .n{background:linear-gradient(135deg,#fb923c,#ea580c)}
-
-/* ====== QUIZ ====== */
-.qbar{background:linear-gradient(120deg,#0b1f3a,#143557);border-bottom:2px solid rgba(249,115,22,.35);position:sticky;top:0;z-index:50}
-.qbar .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0}
-.qbar .t{font-size:14.5px;font-weight:900;color:#fff}
-.qbar .c{font-size:13px;font-weight:800;color:var(--orange3);white-space:nowrap}
-.prog{height:6px;background:#0a1a30}
-.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ea580c,#fb923c);transition:width .3s}
-
-.qbox{background:linear-gradient(170deg,#0f2946,#0c2240);border:1.5px solid #1b3a63;border-radius:20px;padding:22px;margin:22px 0}
-.qnum{display:inline-block;background:var(--orange-soft);border:1px solid rgba(249,115,22,.45);color:#fdba74;
-      font-size:12.5px;font-weight:900;padding:3px 14px;border-radius:999px;margin-bottom:12px}
-.qtext{margin:0 0 18px;font-size:18.5px;font-weight:800;color:#fff;line-height:1.85}
-
+body{margin:0;padding:0 0 70px;font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;
+  background:radial-gradient(1200px 600px at 85% -10%,#17365c 0%,#0b1f3a 45%,#081729 100%);
+  color:var(--ink);direction:rtl;line-height:1.9;font-size:16px;min-height:100vh}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+a{color:inherit}
+.hero{padding:44px 0 26px;text-align:center}
+.hero .kicker{display:inline-block;background:linear-gradient(120deg,var(--orange),#c2410c);
+  color:#fff;font-weight:900;font-size:12.5px;padding:5px 16px;border-radius:999px;letter-spacing:.3px}
+.hero h1{margin:14px 0 8px;font-size:34px;font-weight:900;line-height:1.4}
+.hero h1 span{background:linear-gradient(120deg,var(--orange3),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0 auto;max-width:720px;color:var(--mut);font-size:15.5px}
+.stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0 6px}
+.stat{background:var(--navy2);border:1px solid var(--line);border-radius:16px;padding:12px 22px;min-width:130px}
+.stat b{display:block;font-size:23px;font-weight:900;color:var(--orange3)}
+.stat small{color:var(--mut);font-size:12.5px;font-weight:700}
+.note2{margin:20px 0 0;background:rgba(249,115,22,.09);border:1px solid rgba(249,115,22,.35);
+  border-radius:16px;padding:14px 18px;color:var(--cream);font-size:14.5px;font-weight:700}
+.note2 b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:22px 0 0}
+.card{position:relative;overflow:hidden;background:var(--navy2);border:1px solid var(--line);border-radius:20px;
+  padding:18px;cursor:pointer;transition:.18s;display:flex;gap:14px;align-items:flex-start}
+.card:hover{transform:translateY(-3px);border-color:var(--orange2);box-shadow:0 16px 34px -18px rgba(249,115,22,.55)}
+.card .n{flex:0 0 46px;height:46px;border-radius:14px;display:grid;place-items:center;font-weight:900;font-size:19px;
+  background:linear-gradient(120deg,var(--orange),#c2410c);color:#fff}
+.card.big .n{background:linear-gradient(120deg,#1e40af,var(--orange))}
+.card h3{margin:0 0 4px;font-size:17px;font-weight:900}
+.card p{margin:0;color:var(--mut);font-size:13.5px;font-weight:600;line-height:1.8}
+.card .tags{margin-top:9px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11.5px;font-weight:900;padding:2px 9px;border-radius:999px;background:var(--navy3);border:1px solid var(--line2);color:var(--mut)}
+.tag.o{background:rgba(249,115,22,.16);border-color:rgba(249,115,22,.5);color:var(--cream)}
+.bar{position:sticky;top:0;z-index:60;background:rgba(11,31,58,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .in{display:flex;align-items:center;gap:12px;padding:10px 0;flex-wrap:wrap}
+.btn{background:linear-gradient(120deg,var(--orange),#c2410c);color:#fff;border:0;border-radius:12px;
+  padding:10px 20px;font-family:inherit;font-weight:900;font-size:14.5px;cursor:pointer;transition:.16s}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;border:1.5px solid var(--line2);color:var(--mut)}
+.btn.ghost:hover{border-color:var(--orange2);color:var(--cream)}
+.pill{background:var(--navy3);border:1px solid var(--line2);border-radius:999px;padding:5px 14px;font-size:13px;font-weight:800;color:var(--mut)}
+.pill b{color:var(--orange3)}
+.prog{height:5px;background:var(--navy3)}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange3));transition:.3s}
+.qwrap{padding:26px 0}
+.qbox{background:var(--navy2);border:1px solid var(--line);border-radius:22px;padding:24px}
+.qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.qkind{display:inline-block;font-size:11.5px;font-weight:900;padding:3px 12px;border-radius:999px;
+  background:rgba(249,115,22,.16);border:1px solid rgba(249,115,22,.5);color:var(--cream)}
+.qkind.tf{background:rgba(30,58,138,.45);border-color:var(--line2);color:#a9c7f0}
+.qkind.essay{background:rgba(234,88,12,.25);border-color:var(--orange2);color:#ffe1c7}
+.qkind.je{background:rgba(30,64,175,.3);border-color:#1d4ed8;color:#c7d9ff}
+.pts{font-size:12.5px;font-weight:900;color:var(--orange3)}
+.qbox h2{margin:8px 0 16px;font-size:20px;font-weight:900;line-height:1.75}
 .opts{display:grid;gap:10px}
-.opt{
-  display:flex;align-items:flex-start;gap:12px;background:#0c2240;border:1.5px solid #1b3a63;border-radius:14px;
-  padding:13px 16px;cursor:pointer;transition:.16s;font-size:15px;font-weight:700;color:#dbe6f5;text-align:right;
-}
-.opt:hover{border-color:var(--orange2);background:#123055}
-.opt .k{width:28px;height:28px;flex:0 0 28px;border-radius:9px;display:grid;place-items:center;
-        background:#143557;color:#9fb6d2;font-weight:900;font-size:13px}
-.opt.pick{border-color:var(--orange2);background:rgba(249,115,22,.14)}
-.opt.ok{border-color:var(--ok);background:rgba(22,163,74,.16)}
-.opt.ok .k{background:var(--ok);color:#fff}
-.opt.no{border-color:var(--bad);background:rgba(239,68,68,.14)}
-.opt.no .k{background:var(--bad);color:#fff}
-.opt.lock{cursor:default}
-
-.fb{margin-top:16px;border-radius:14px;padding:13px 16px;font-size:14.5px;font-weight:700;display:none;border-right:6px solid}
-.fb.show{display:block}
-.fb.ok{background:rgba(22,163,74,.12);border-right-color:var(--ok);color:#bbf7d0}
-.fb.no{background:rgba(239,68,68,.12);border-right-color:var(--bad);color:#fecaca}
-.fb .h{display:block;font-weight:900;margin-bottom:3px;font-size:13.5px}
-.fb .exp{display:block;color:#c9d8ec;font-weight:600;font-size:14px;margin-top:5px}
-
-.qfoot{display:flex;gap:10px;justify-content:space-between;margin-top:20px;flex-wrap:wrap}
-.btn{
-  background:linear-gradient(135deg,#ea580c,#f97316);color:#fff;border:none;border-radius:13px;
-  padding:12px 26px;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;transition:.18s;
-}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 22px -12px rgba(249,115,22,.85)}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
-.btn.ghost{background:transparent;border:1.5px solid #2a4a75;color:#a9c0dc}
-.btn.ghost:hover{border-color:var(--orange2);color:#ffd7b0;box-shadow:none}
-
-/* ====== RESULT ====== */
-.res{background:linear-gradient(170deg,#0f2946,#0c2240);border:1.5px solid #1b3a63;border-radius:22px;padding:26px;margin:24px 0;text-align:center}
-.ring{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
-      background:conic-gradient(var(--orange2) var(--p,0%), #143557 0);transition:.5s}
-.ring span{width:118px;height:118px;border-radius:50%;background:#0c2240;display:grid;place-items:center;
-           font-size:30px;font-weight:900;color:#fff}
-.res h2{margin:0 0 6px;font-size:23px;font-weight:900;color:#fff}
-.res p{margin:0 0 18px;color:var(--txt-dim);font-size:14.5px;font-weight:700}
-.resbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.rev{margin-top:24px;text-align:right}
-.rev h3{font-size:15px;font-weight:900;color:var(--orange3);margin:0 0 10px}
-.rev .item{background:#0c2240;border:1.5px solid #1b3a63;border-right:5px solid var(--bad);border-radius:14px;padding:12px 16px;margin-bottom:10px}
-.rev .item b{display:block;font-size:14.5px;color:#fff;font-weight:800;margin-bottom:6px}
-.rev .item span{display:block;font-size:13.5px;font-weight:700}
-.rev .item .y{color:#fca5a5}
-.rev .item .g{color:#86efac}
-.foot{text-align:center;font-size:12.5px;padding:26px 18px;color:#607b9c}
-@media(max-width:640px){
-  .top h1{font-size:23px}.qtext{font-size:16.5px}.qbox{padding:16px}.grid{grid-template-columns:1fr}
-  .ring{width:126px;height:126px}.ring span{width:98px;height:98px;font-size:25px}
-}
+.opt{display:flex;gap:12px;align-items:flex-start;background:var(--navy3);border:1.5px solid var(--line2);
+  border-radius:14px;padding:13px 16px;cursor:pointer;font-weight:700;font-size:15.5px;transition:.15s}
+.opt:hover{border-color:var(--orange2);transform:translateX(-3px)}
+.opt .k{flex:0 0 28px;height:28px;border-radius:9px;background:var(--line);display:grid;place-items:center;
+  font-weight:900;font-size:13px;color:#cfe0f5}
+.opt.lock{cursor:default;transform:none}
+.opt.ok{border-color:var(--orange2);background:rgba(249,115,22,.14)}
+.opt.ok .k{background:var(--orange);color:#fff}
+.opt.no{border-color:#ef4444;background:rgba(239,68,68,.13)}
+.opt.no .k{background:#ef4444;color:#fff}
+textarea{width:100%;min-height:130px;background:#0c2240;border:1.5px solid var(--line2);border-radius:14px;
+  padding:13px 15px;color:var(--ink);font-family:inherit;font-size:15.5px;font-weight:600;line-height:2;resize:vertical}
+textarea:focus{outline:none;border-color:var(--orange2)}
+textarea:disabled{opacity:.8}
+.hint{color:var(--mut2);font-size:12.5px;font-weight:700;margin:7px 0 0}
+.ai{margin-top:16px;border-radius:16px;padding:16px 18px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.32);display:none}
+.ai.show{display:block}
+.ai .head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px dashed rgba(249,115,22,.35);padding-bottom:10px;margin-bottom:10px}
+.ai .head b{font-size:15.5px}
+.ai .score{font-size:15px;font-weight:900;color:var(--orange3)}
+.ai ul{margin:6px 0;padding:0;list-style:none}
+.ai li{font-size:14px;font-weight:700;margin:5px 0;padding-right:24px;position:relative;line-height:1.85}
+.ai li.got:before{content:"✓";position:absolute;right:0;color:var(--orange3);font-weight:900}
+.ai li.miss:before{content:"✗";position:absolute;right:0;color:#f87171;font-weight:900}
+.ai li.got{color:#ffd9b8}
+.ai li.miss{color:#93a9c4}
+.ai .ref{margin-top:12px;background:#0c2240;border:1px solid var(--line2);border-radius:12px;padding:12px 14px;
+  color:var(--mut);font-size:14px;font-weight:700;line-height:2}
+.ai .ref b{color:var(--orange3)}
+.nav2{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.res{text-align:center;padding:10px 0}
+.ring{width:190px;height:190px;margin:6px auto 16px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--orange2) var(--p,0%),#143557 0)}
+.ring i{width:150px;height:150px;border-radius:50%;background:var(--navy2);display:grid;place-items:center;
+  font-style:normal;font-size:38px;font-weight:900;color:var(--orange3)}
+.res h2{margin:6px 0;font-size:25px;font-weight:900}
+.res p{margin:0;color:var(--mut);font-weight:700}
+.rev{margin-top:26px;text-align:right}
+.rev h3{font-size:18px;font-weight:900;margin:0 0 12px;border-right:6px solid var(--orange);padding-right:12px}
+.rv{background:var(--navy2);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+.rv .q{font-weight:900;font-size:15.5px;margin-bottom:8px}
+.rv .l{font-size:14px;font-weight:700;color:var(--mut);margin:3px 0}
+.rv .l b{color:var(--orange3)}
+.foot{text-align:center;color:var(--mut2);font-size:12.5px;padding:30px 18px 0}
+@media(max-width:640px){.hero h1{font-size:26px}.ring{width:160px;height:160px}.ring i{width:126px;height:126px;font-size:31px}}
 </style>
 </head>
 <body>
 
-<!-- ================= HOME ================= -->
-<div class="view on" id="vHome">
-  <header class="top">
-    <div class="wrap">
-      <span class="pill">محاسبة مالية (1) — مراجعة بالاختبارات</span>
-      <h1>اختبر نفسك في كل قسم + اختبار شامل</h1>
-      <p>أسئلة اختيار من متعدد مبنية على كتاب المقرر، مع تصحيح فوري وشرح مختصر لكل إجابة.</p>
-      <div class="sum">
-        <div>الأقسام: <b>7</b></div>
-        <div>أسئلة الأقسام: <b id="sSumQ">0</b></div>
-        <div>الاختبار الشامل: <b id="sAllQ">0</b> سؤال</div>
-      </div>
+<div id="vHome">
+<div class="wrap">
+  <div class="hero">
+    <span class="kicker">أكاديمية السادات للعلوم الإدارية — نمط الميد-تيرم</span>
+    <h1>امتحانات <span>محاسبة مالية (1)</span> — أسئلة تطبيقية وحالات</h1>
+    <p>أسئلة بمستوى امتحانات منتصف الفصل: حالات عملية · تحليل · قيود · حسابات · أسئلة مقالية — مع <b>تصحيح ذكي</b> يقيس معنى إجابتك لا نصّها.</p>
+    <div class="stats">
+      <div class="stat"><b id="sSec">0</b><small>قسمًا امتحانيًا</small></div>
+      <div class="stat"><b id="sQ">0</b><small>سؤال في بنك الأسئلة</small></div>
+      <div class="stat"><b id="sE">0</b><small>سؤال في الميد-تيرم</small></div>
+      <div class="stat"><b>AI</b><small>تصحيح بالمعنى</small></div>
     </div>
-  </header>
-  <div class="wrap">
-    <div class="grid" id="homeGrid"></div>
-    <div class="foot">ملخص مذاكرة — مقرر محاسبة مالية (1) · أكاديمية السادات للعلوم الإدارية (2022م / 1444هـ)</div>
+    <div class="note2">التصحيح المقالي يقيس <b>المفاهيم الصحيحة التي ذكرتها</b> بأي صياغة وبأي ترتيب — وليس مطابقة نص الإجابة النموذجية. ويُعطي درجة جزئية عند نقص بعض النقاط.</div>
   </div>
+  <div class="grid" id="homeGrid"></div>
+  <div class="foot">مذكرة وامتحانات مبنية على ملف المقرر — 86 صفحة · 7 فصول</div>
+</div>
 </div>
 
-<!-- ================= QUIZ ================= -->
-<div class="view" id="vQuiz">
-  <div class="qbar">
-    <div class="wrap">
-      <div class="row">
-        <span class="t" id="qTitle"></span>
-        <span class="c" id="qCount"></span>
-      </div>
-      <div class="prog"><i id="progBar"></i></div>
+<div id="vQuiz" style="display:none">
+  <div class="bar">
+    <div class="wrap in">
+      <button class="btn ghost" onclick="go('vHome')">← رجوع</button>
+      <span class="pill" id="qTitle">—</span>
+      <span class="pill">سؤال <b id="qIdx">1</b> / <b id="qTot">1</b></span>
+      <span class="pill">النقاط <b id="qScore">0</b></span>
+      <span class="pill" id="timerPill" style="display:none">الوقت <b id="timer">00:00</b></span>
     </div>
+    <div class="prog"><i id="progBar"></i></div>
   </div>
-  <div class="wrap">
+  <div class="wrap qwrap">
     <div class="qbox">
-      <div class="qnum" id="qNum"></div>
-      <h2 class="qtext" id="qText"></h2>
-      <div class="opts" id="qOpts"></div>
-      <div class="fb" id="qFb"></div>
-      <div class="qfoot">
-        <button class="btn" id="qNext" onclick="nextQ()" disabled>السؤال التالي</button>
-        <button class="btn ghost" onclick="go('vHome')">إنهاء والعودة</button>
+      <div class="qtop">
+        <span class="qkind" id="qKind">سؤال</span>
+        <span class="pts" id="qPts"></span>
+      </div>
+      <h2 id="qText"></h2>
+      <div id="qArea"></div>
+      <div class="ai" id="aiBox"></div>
+      <div class="nav2">
+        <button class="btn" id="btnNext" onclick="nextQ()">السؤال التالي</button>
+        <button class="btn ghost" onclick="finish()">إنهاء الامتحان</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ================= RESULT ================= -->
-<div class="view" id="vRes">
-  <div class="wrap">
-    <div class="res">
-      <div class="ring" id="ring"><span id="pct">0%</span></div>
-      <h2 id="resTitle"></h2>
-      <p id="resMsg"></p>
-      <div class="resbtns">
-        <button class="btn" onclick="restart()">إعادة الاختبار</button>
+<div id="vRes" style="display:none">
+  <div class="wrap qwrap">
+    <div class="qbox res">
+      <div class="ring" id="ring"><i id="pct">0%</i></div>
+      <h2 id="resT"></h2>
+      <p id="resP"></p>
+      <div class="nav2" style="justify-content:center">
+        <button class="btn" onclick="restart()">إعادة الامتحان</button>
         <button class="btn ghost" onclick="go('vHome')">رجوع للفهرس</button>
       </div>
-      <div class="rev" id="rev"></div>
     </div>
+    <div class="rev" id="revBox"></div>
   </div>
 </div>
 
 <script>
-/* ==================== بنك الأسئلة ==================== */
-var QUIZ = [
-{ id:'ch1', n:'1', t:'الإطار النظري للمحاسبة المالية', d:'المفهوم · الأهداف · الفروض والمبادئ', items:[
- {q:'المحاسبة المالية في صورتها الحديثة تُوصَف بأنها:',o:['عملية فنية للتسجيل فقط','نشاط خدمي ونظام معلومات','فرع من فروع الرياضيات','أداة حكومية للرقابة'],a:1,e:'تطوّرت المحاسبة: عملية فنية ← نشاط خدمي ← نظام معلومات.'},
- {q:'أي القوائم المالية تُعدّ على الأساس النقدي؟',o:['قائمة الدخل','قائمة المركز المالي','قائمة التدفقات النقدية','قائمة التغيرات في حقوق الملكية'],a:2,e:'قائمة التدفقات النقدية هي الوحيدة على الأساس النقدي، والباقي على أساس الاستحقاق.'},
- {q:'عدد المبادئ المحاسبية المتعارف عليها (GAAP) في المقرر:',o:['4 مبادئ','6 مبادئ','9 مبادئ','12 مبدأً'],a:2,e:'تكلفة · دورية · استحقاق · مقابلة · إفصاح · ثبات · موضوعية · حيطة · فصل.'},
- {q:'مبدأ «عدم تسجيل المعاملات ما لم يكن هناك دليل على حدوثها» هو:',o:['الإفصاح','الموضوعية','الحيطة والحذر','الثبات'],a:1,e:'الموضوعية = قياس موضوعي بمستندات ودون تحيز.'},
- {q:'تقارير محاسبة التكاليف والمحاسبة الإدارية تهدف إلى:',o:['خدمة الأطراف الخارجية','خدمة إدارة المنشأة','إعداد الإقرار الضريبي','إعداد الميزانية الحكومية'],a:1,e:'خدمة الأطراف الداخلية (الإدارة) وليس الخارجية.'},
- {q:'الفرض الذي يعتبر الشركة كيانًا مستقلًا عن مالكيها هو:',o:['الاستمرارية','القياس النقدي','الشخصية المعنوية المستقلة','ثبات وحدة النقد'],a:2,e:'كل المعاملات تُسجَّل باسم الشركة ككيان مستقل عن المالك.'}
-]},
-{ id:'ch2', n:'2', t:'عرض وإعداد القوائم المالية', d:'قائمة الدخل · المركز المالي', items:[
- {q:'المعادلة الأساسية لقائمة الدخل:',o:['الأصول = الخصوم + حقوق الملكية','الإيرادات − المصروفات = الربح أو الخسارة','الإيرادات + المصروفات = صافي الربح','المبيعات = المشتريات + المخزون'],a:1,e:'بمقارنة الإيرادات بالمصروفات تُستخلَص نتيجة الأعمال.'},
- {q:'صافي المبيعات − تكلفة المبيعات =',o:['صافي الربح','مجمل الربح','تكلفة البضاعة المتاحة للبيع','الربح قبل الضريبة'],a:1,e:'الناتج هو مجمل الربح، ثم يُستكمل بالأرباح والخسائر للوصول لصافي الربح.'},
- {q:'تكلفة المبيعات تُحسب كالتالي:',o:['(أول المدة + المشتريات + نقل المشتريات − مردودات المشتريات) − آخر المدة','(آخر المدة + المشتريات) − أول المدة','المشتريات − المبيعات','أول المدة + آخر المدة'],a:0,e:'أول + مشتريات + نقل − مردودات = متاح للبيع، ثم − آخر المدة.'},
- {q:'تُقيَّم بضاعة آخر المدة بـ:',o:['التكلفة فقط','سعر البيع','التكلفة أو السوق أيهما أقل','القيمة الاسمية'],a:2,e:'قاعدة التقييم: التكلفة أو السوق أيهما أقل.'},
- {q:'في الشركات التجارية، الحساب الختامي الذي لا يُعدّ هو:',o:['حـ/ المتاجرة','حـ/ الأرباح والخسائر','حـ/ تكلفة الإنتاج (التشغيل)','ميزان المراجعة'],a:2,e:'حـ/ تكلفة الإنتاج (التشغيل) خاص بالشركات الصناعية.'},
- {q:'عنوان أي قائمة مالية يتكوّن من:',o:['عنصرين','ثلاثة عناصر','أربعة عناصر','لا عدد ثابت'],a:1,e:'اسم المنشأة + اسم القائمة + تاريخ الإعداد أو الفترة المالية.'}
-]},
-{ id:'ch3', n:'3', t:'معادلة الميزانية', d:'الأصول = الخصوم + حقوق الملكية', items:[
- {q:'معادلة الميزانية هي:',o:['الأصول = الخصوم − حقوق الملكية','الأصول = الخصوم + حقوق الملكية','الأصول + الخصوم = حقوق الملكية','الخصوم = الأصول + حقوق الملكية'],a:1,e:'ويجب أن يتساوى جانبا الميزانية دائمًا.'},
- {q:'حقوق الملكية تزيد بـ:',o:['المسحوبات الشخصية','المصروفات','استثمارات المالك والإيرادات','الالتزامات قصيرة الأجل'],a:2,e:'المسحوبات والمصروفات تُنقص حقوق الملكية.'},
- {q:'شراء بضاعة بالأجل يؤثر على معادلة الميزانية بـ:',o:['زيادة أصل وزيادة التزام','نقص أصل وزيادة التزام','زيادة أصل ونقص أصل آخر','لا تأثير إطلاقًا'],a:0,e:'تزيد البضاعة (أصل) ويزيد الدائنون (التزام).'},
- {q:'الأصول التي يُتوقع تحويلها إلى نقدية خلال سنة أو دورة التشغيل تُسمّى:',o:['أصول ثابتة','أصول متداولة','أصول معنوية','أرصدة دائنة أخرى'],a:1,e:'مثل المخزون والمدينين وأوراق القبض والنقدية.'},
- {q:'القيد المزدوج يعني أن كل عملية:',o:['تُسجَّل مرة واحدة','لها طرف مدين وطرف دائن متساويان في القيمة','تُسجَّل في دفتر الأستاذ فقط','تُلخَّص في الميزانية'],a:1,e:'هذا هو أساس توازن الميزانية.'},
- {q:'شهرة المحل وبراءة الاختراع تُصنَّف كـ:',o:['أصول ثابتة ملموسة','أصول متداولة','أصول غير ملموسة (معنوية)','التزامات طويلة الأجل'],a:2,e:'تفتقر للكيان المادي لكن يُتوقع الاستفادة منها مستقبلًا.'}
-]},
-{ id:'ch4', n:'4', t:'الدورة المحاسبية وتحليل العمليات', d:'اليومية · الأستاذ · ميزان المراجعة', items:[
- {q:'الترتيب الصحيح لأول أربع خطوات في الدورة المحاسبية:',o:['اليومية ← التحليل ← الأستاذ ← ميزان المراجعة','تحليل العمليات ← دفتر اليومية ← دفتر الأستاذ ← ميزان المراجعة','الأستاذ ← اليومية ← ميزان المراجعة ← التحليل','التحليل ← ميزان المراجعة ← اليومية ← الأستاذ'],a:1,e:'تحليل من المستندات، ثم التسجيل باليومية، ثم الترحيل للأستاذ، ثم ميزان المراجعة.'},
- {q:'عدد خطوات الدورة المحاسبية:',o:['4 خطوات','6 خطوات','8 خطوات','10 خطوات'],a:2,e:'تنتهي بإقفال الحسابات وتدويرها.'},
- {q:'يكون للحساب رصيد مدين إذا:',o:['مجموع الجانب الدائن أكبر','مجموع الجانب المدين أكبر','المجموعان متساويان','لا توجد أي حركة على الحساب'],a:1,e:'وإذا تساوى الجانبان فلا يوجد رصيد (صفر).'},
- {q:'القيد الذي يحتوي على أكثر من حساب في أحد طرفيه يُسمّى:',o:['قيدًا بسيطًا','قيدًا مركّبًا','قيدًا معوَّضًا','قيدًا معدومًا'],a:1,e:'القيد البسيط كل طرف فيه حساب واحد فقط.'},
- {q:'طبيعة حساب المصروفات:',o:['مدين','دائن','حسب الحالة','لا طبيعة له'],a:0,e:'المصروفات والأصول مدينة، والإيرادات والخصوم وحقوق الملكية دائنة.'},
- {q:'ميزان المراجعة يُعدّ:',o:['داخل الدفاتر المحاسبية','خارج الدفاتر للتحقق من صحة التسجيل والترحيل والترصيد','بديلًا عن قائمة الدخل','من واقع الجرد الفعلي فقط'],a:1,e:'الكشف يُعدّ خارج الدفاتر بغرض التحقق.'}
-]},
-{ id:'ch5', n:'5', t:'العمليات التجارية للمشروع', d:'الشيكات · الخصومات · المردودات', items:[
- {q:'المسحوب عليه في الشيك هو:',o:['محرر الشيك','البنك','المستفيد','الدائن'],a:1,e:'الساحب = محرر الشيك، المسحوب عليه = البنك، المستفيد = من يحق له الصرف.'},
- {q:'شرط البيع «2/10 صافي 30» يعني:',o:['خصم 10% إذا سدّد خلال يومين','خصم 2% إذا سدّد خلال 10 أيام، وأصل المدة 30 يومًا','خصم 30% خلال 10 أيام','الدفع فورًا دون خصم'],a:1,e:'الخصم النقدي يُثبَت فقط عند السداد خلال فترة الخصم.'},
- {q:'الخصم التجاري:',o:['يُثبت في الدفاتر بحساب مستقل','لا يُثبت مقابله في الدفاتر وتُسجَّل الفاتورة بالصافي','يُعتبر مصروفًا على البائع','يُعتبر إيرادًا للمشتري'],a:1,e:'بينما الخصم النقدي يُفتح له حساب مستقل ويُثبت بالدفاتر.'},
- {q:'الخصم المكتسب بالنسبة للمشتري يُعدّ:',o:['مصروفًا','إيرادًا','أصلًا','التزامًا'],a:1,e:'المكتسب إيراد للمشتري، والمسموح به مصروف على البائع.'},
- {q:'طبيعة حساب مردودات المشتريات:',o:['مدين','دائن','لا طبيعة له','يُقفل في الميزانية'],a:1,e:'مردودات المشتريات دائن، ومردودات المبيعات مدين.'},
- {q:'عند رفض البنك للشيك الصادر من المنشأة، القيد:',o:['من حـ/ الدائنين إلى حـ/ البنك','من حـ/ البنك إلى حـ/ الدائنين (عكس قيد السداد)','لا يُجرى أي قيد','من حـ/ الخزينة إلى حـ/ البنك'],a:1,e:'الرفض يعني إلغاء أثر السداد فيعود الالتزام على المنشأة.'}
-]},
-{ id:'ch6', n:'6', t:'الأوراق التجارية — الكمبيالات', d:'السند الإذني · التظهير · الأجيو', items:[
- {q:'الكمبيالة في دفاتر البائع (المنشأة) تُسمّى:',o:['أوراق الدفع','أوراق القبض','شيكات تحت التحصيل','مدينون'],a:1,e:'عند البائع ورقة قبض، وعند المشتري ورقة دفع.'},
- {q:'معادلة الأجيو (رسم الخصم) هي:',o:['القيمة الأسمية × معدل الخصم ÷ 100 × المدة','القيمة الاسمية + المصروفات','القيمة الاسمية ÷ المدة','الفوائد × 2'],a:0,e:'وتمثّل مصروفًا مستحقًا بدفاتر حائز الكمبيالة.'},
- {q:'عند إرسال الكمبيالة للبنك للتحصيل، القيد عند حائزها:',o:['من حـ/ البنك إلى حـ/ أوراق القبض','من حـ/ أوراق قبض برسم التحصيل إلى حـ/ أوراق القبض','من حـ/ أوراق القبض برسم الخصم إلى حـ/ البنك','لا يوجد قيد'],a:1,e:'ولا توجد قيود عند المشتري في هذه الحالة.'},
- {q:'مصروفات البروتستو هي:',o:['عمولة البنك على التحصيل','مصروفات الاحتجاج الرسمي على رفض السداد','فوائد التجديد','خصم تعجيل الدفع'],a:1,e:'تُحمَّل على المسحوب عليه عند الرفض.'},
- {q:'عند إفلاس المسحوب عليه وعدم تحصيل الكمبيالة تُسجَّل:',o:['إيرادًا','ديونًا معدومة','أصلًا ثابتًا','خصمًا مكتسبًا'],a:1,e:'تُقفل في حـ/ الديون المعدومة.'},
- {q:'في تجديد الكمبيالة المرفوضة، القيمة الجديدة تشمل:',o:['قيمة الكمبيالة القديمة فقط','قيمة الكمبيالة + المصروفات القضائية + الفوائد المتفق عليها','قيمة الكمبيالة − الفوائد','الفوائد فقط'],a:1,e:'ويُحرَّر بذلك كمبيالة جديدة بمدّ أجل الاستحقاق.'}
-]},
-{ id:'ch7', n:'7', t:'معالجة الأخطاء المحاسبية', d:'أنواع الأخطاء · طرق التصحيح', items:[
- {q:'عدد أنواع الأخطاء المحاسبية في المقرر:',o:['نوعان','ثلاثة أنواع','أربعة أنواع','خمسة أنواع'],a:2,e:'حذف/سهو · ارتكاب · فنية · معوَّضة.'},
- {q:'الخطأ المعوَّض (المتكافئ) خطير لأنه:',o:['يظهر دائمًا في قائمة الدخل','يجعل ميزان المراجعة غير متوازن','يُبقي ميزان المراجعة متوازنًا فلا يكشفه','يوقف العمل المحاسبي'],a:2,e:'لذلك يظل ميزان المراجعة متوازنًا ولا يكشف هذا النوع.'},
- {q:'الخلط بين المصروف الإيرادي والمصروف الرأسمالي يُعدّ:',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:2,e:'الخطأ الفني = عدم التطبيق السليم للمبادئ والقواعد المحاسبية.'},
- {q:'عدم تسجيل أحد طرفي قيد اليومية يُعدّ:',o:['خطأ حذف أو سهو','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:0,e:'الحذف يكون بعدم التسجيل كليًا أو جزئيًا أو عدم الترحيل.'},
- {q:'الطريقة المطوّلة في تصحيح الأخطاء تتكوّن من:',o:['خطوة واحدة','خطوتين: إلغاء القيد الخطأ ثم إثبات القيد الصحيح','ثلاث خطوات','لا تتطلب قيودًا'],a:1,e:'مع عدم كشط أي معلومات في الدفاتر.'},
- {q:'الخطأ الذي يُصحَّح مباشرة بقيد يومية جديد هو أسلوب:',o:['الطريقة المطوّلة','الطريقة المختصرة','الكشط في الدفاتر','إعادة فتح الحسابات'],a:1,e:'لكن يُفضَّل في التطبيق اتباع الطريقة المطوّلة.'}
-]},
-{ id:'all', n:'★', t:'الاختبار الشامل', d:'كل الفصول معًا — 16 سؤالًا', big:true, items:[
- {q:'المحاسبة المالية تهتم بقياس الأحداث الاقتصادية:',o:['التاريخية فقط','المستقبلية فقط','التاريخية والمستقبلية','غير المالية فقط'],a:2,e:'قياس ما حدث وما يُتوقع حدوثه.'},
- {q:'توصيل كل الحقائق الهامة لمستخدمي المعلومات يُعبّر عن مبدأ:',o:['الموضوعية','الإفصاح والشفافية','الحيطة والحذر','الثبات'],a:1,e:'الإفصاح في حدود المتاح لخدمة مستخدمي القوائم.'},
- {q:'المسحوبات الشخصية للمالك:',o:['تزيد حقوق الملكية','تُنقص حقوق الملكية','تزيد الأصول','التزام على الشركة'],a:1,e:'المسحوبات والمصروفات تُنقص حقوق الملكية.'},
- {q:'القيد: من حـ/ الخزينة إلى حـ/ رأس المال يمثّل:',o:['شراء أصل','استثمار المالك لرأس المال نقدًا','سداد قرض','تحصيل دين من عميل'],a:1,e:'زيادة نقدية مقابل زيادة رأس المال.'},
- {q:'أي مما يلي ليس من القوائم المالية الأربع؟',o:['قائمة الدخل','قائمة المركز المالي','ميزان المراجعة','قائمة التدفقات النقدية'],a:2,e:'ميزان المراجعة كشف يُعدّ خارج الدفاتر وليس قائمة مالية.'},
- {q:'صافي الربح بعد الضريبة = صافي أرباح النشاط ± البنود غير العادية −',o:['المصروفات البيعية','ضريبة الدخل','الفوائد المدينة','المسحوبات'],a:1,e:'ضريبة الدخل تُخصم في نهاية قائمة الدخل المستحدثة.'},
- {q:'شركة حصّلت دينًا من أحد المدينين نقدًا، الأثر على المعادلة:',o:['زيادة أصل ونقص أصل آخر (بلا تغيير في الإجمالي)','زيادة أصول وزيادة خصوم','نقص أصول ونقص خصوم','لا يوجد أثر محاسبي'],a:0,e:'تزيد الخزينة وتنقص المدينون بنفس المقدار.'},
- {q:'الحساب الذي طبيعته دائنة هو:',o:['المشتريات','مردودات المبيعات','أوراق القبض','المدينون'],a:1,e:'مردودات المبيعات تُخصم من المبيعات ولذلك طبيعتها دائنة.'},
- {q:'في قائمة الدخل المستحدثة، مصروف الفوائد يُخصم:',o:['قبل مجمل الربح','بعد صافي أرباح النشاط وقبل البنود غير العادية','بعد ضريبة الدخل','لا يُخصم إطلاقًا'],a:1,e:'مصروف تمويلي يُخصم بعد صافي أرباح النشاط.'},
- {q:'اعتبار الوحدة المحاسبية مستقلة عن المالك يعني:',o:['المالك مسؤول عن ديون الشركة','فصل معاملات الشركة عن معاملات المالك الشخصية','الشركة لا تُقفل حساباتها','الأرباح لا تُوزَّع'],a:1,e:'هذا هو فرض الشخصية المعنوية المستقلة.'},
- {q:'عند تحصيل شيك سبق تسجيله في «شيكات تحت التحصيل»:',o:['من حـ/ البنك إلى حـ/ شيكات تحت التحصيل','من حـ/ شيكات تحت التحصيل إلى حـ/ البنك','من حـ/ المدينين إلى حـ/ البنك','لا يوجد قيد'],a:0,e:'عند إشعار البنك بالتحصيل تُقفل الأوراق برسم التحصيل.'},
- {q:'أي مما يلي يجعل ميزان المراجعة غير متوازن؟',o:['الخطأ المعوَّض','ترحيل أحد طرفي القيد فقط دون الآخر','إثبات مصروف إيرادي كمصروف رأسمالي','الثبات في الطرق المحاسبية'],a:1,e:'الخطأ المعوَّض يُبقي الميزان متوازنًا رغم وجود الخطأ.'},
- {q:'إذا بلغت المبيعات 100,000 ومردودات المبيعات 5,000 فإن صافي المبيعات =',o:['105,000','95,000','100,000','5,000'],a:1,e:'صافي المبيعات = المبيعات − مردودات المبيعات = 95,000.'},
- {q:'بضاعة أول المدة 20,000 · المشتريات 60,000 · نقل مشتريات 3,000 · مردودات مشتريات 2,000 · بضاعة آخر المدة 15,000. تكلفة المبيعات =',o:['66,000','63,000','81,000','68,000'],a:0,e:'(20,000 + 60,000 + 3,000 − 2,000) = 81,000 − 15,000 = 66,000.'},
- {q:'كمبيالة قيمتها 50,000 خُصمت لدى البنك بمعدل خصم 10% لمدة 3 شهور. قيمة الأجيو =',o:['5,000','1,250','500','3,750'],a:1,e:'50,000 × 10 ÷ 100 × (3÷12) = 1,250.'},
- {q:'الفرض الذي يقضي بقياس المعاملات نقديًا فقط:',o:['الاستمرارية','القياس النقدي','الدورية','الحيطة والحذر'],a:1,e:'لا تُقاس الكميات أو الحالة المعنوية للأفراد.'}
-]}
-];
-
-/* ==================== منطق الاختبار ==================== */
-var LETTERS=['أ','ب','ج','د','هـ'];
-var cur=null, idx=0, score=0, answered=false, wrongs=[];
+/* ================= محرّك الامتحان + التصحيح الذكي بالمعنى ================= */
+var LETTERS=['أ','ب','ج','د','هـ','و'];
+var cur=null, idx=0, score=0, results=[], answered=false, timerId=null, remain=0;
 
 function $(id){return document.getElementById(id);}
 
+function norm(s){
+  s=String(s==null?'':s);
+  s=s.replace(/[\u064B-\u0652\u0670\u0640]/g,'');
+  s=s.replace(/[\u0660-\u0669]/g,function(d){return String('\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669'.indexOf(d));});
+  s=s.replace(/[\u0625\u0623\u0622\u0671]/g,'\u0627').replace(/\u0649/g,'\u064A').replace(/\u0626/g,'\u064A').replace(/\u0624/g,'\u0648').replace(/\u0629/g,'\u0647');
+  s=s.replace(/[^\u0621-\u064Aa-zA-Z0-9.,%\s]/g,' ');
+  s=s.replace(/\s+/g,' ').trim();
+  return s;
+}
+function numbersIn(t){
+  var out=[],re=/([0-9][0-9.,]*)(\s*(\u0627\u0644\u0641|\u0622\u0644\u0627\u0641|\u0623\u0644\u0641|\u0645\u0644\u064A\u0648\u0646))?/g,m;
+  while((m=re.exec(t))!==null){
+    var d=m[1].replace(/[.,]/g,'');
+    if(!d) continue;
+    var v=parseInt(d,10);
+    if(isNaN(v)) continue;
+    if(m[3]){ v=(m[3].indexOf('\u0645\u0644\u064A\u0648\u0646')>=0)? v*1000000 : v*1000; }
+    out.push(v);
+  }
+  return out;
+}
+function isNumSyn(s){ return /^[0-9][0-9.,]*$/.test(String(s).trim()); }
+function numEq(a,b){
+  if(a===b) return true;
+  var ta=String(a).replace(/0+$/,''), tb=String(b).replace(/0+$/,'');
+  if(ta.length>=1&&ta===tb) return true;
+  return Math.abs(a-b)<=Math.max(2,Math.round(b*0.001));
+}
+function alVariants(ns){
+  var out=[ns];
+  if(ns.indexOf('\u0627\u0644')===0&&ns.length>4){ out.push(ns.slice(2)); }
+  return out;
+}
+function synHit(syn,txt,nums){
+  if(isNumSyn(syn)){
+    var target=parseInt(String(syn).replace(/[^0-9]/g,''),10);
+    if(isNaN(target)) return false;
+    for(var i=0;i<nums.length;i++){ if(numEq(nums[i],target)) return true; }
+    return false;
+  }
+  var ns=norm(syn);
+  if(!ns) return false;
+  var vs=alVariants(ns);
+  for(var j=0;j<vs.length;j++){ if(vs[j].length>=3&&txt.indexOf(vs[j])>=0) return true; }
+  return false;
+}
+function keyHit(k,txt,nums){
+  var need=k.n||1, hits=0, syns=k.s||[];
+  for(var i=0;i<syns.length;i++){ if(synHit(syns[i],txt,nums)) hits++; }
+  return hits>=need;
+}
+
 function go(v){
-  var vs=document.querySelectorAll('.view');
-  for(var i=0;i<vs.length;i++){vs[i].className='view'+(vs[i].id===v?' on':'');}
+  ['vHome','vQuiz','vRes'].forEach(function(x){ $(x).style.display=(x===v?'block':'none'); });
+  if(v!=='vQuiz') stopTimer();
   window.scrollTo(0,0);
 }
 
 function buildHome(){
-  var g=$('homeGrid'), h='', sum=0;
-  QUIZ.forEach(function(z){
-    if(z.id==='all') return;
-    sum+=z.items.length;
-    h+='<div class="qcard-home" onclick="startQuiz(\''+z.id+'\')">'+
-       '<div class="n">'+z.n+'</div><h3>'+z.t+'</h3><p>'+z.d+'</p>'+
-       '<div class="meta"><i></i>'+z.items.length+' أسئلة</div></div>';
+  var h='', qc=0, ec=0;
+  EX.forEach(function(s){
+    var k={}; s.items.forEach(function(i){ var t=i.ty||'mcq'; k[t]=(k[t]||0)+1; qc++; if(t==='essay'||t==='je') ec++; });
+    var tag='';
+    if(k.mcq) tag+='<span class="tag">اختياري '+k.mcq+'</span>';
+    if(k.tf) tag+='<span class="tag">صح/خطأ '+k.tf+'</span>';
+    if(k.num) tag+='<span class="tag o">مسائل '+k.num+'</span>';
+    if(k.je) tag+='<span class="tag o">قيود '+k.je+'</span>';
+    if(k.essay) tag+='<span class="tag o">مقالي '+k.essay+'</span>';
+    var tp=0; s.items.forEach(function(i){ tp+=i.pts; });
+    h+='<div class="card'+(s.timed?' big':'')+'" onclick="startExam(\''+s.id+'\')">'+
+       '<div class="n">'+s.n+'</div><div><h3>'+s.t+'</h3><p>'+s.d+'</p>'+
+       '<div class="tags">'+tag+'<span class="tag">'+s.items.length+' سؤالًا · '+tp+' نقطة'+(s.timed?' · '+s.mins+' دقيقة':'')+'</span></div></div></div>';
   });
-  var all=QUIZ.filter(function(z){return z.id==='all';})[0];
-  h+='<div class="qcard-home big" onclick="startQuiz(\'all\')">'+
-     '<div class="n">'+all.n+'</div><h3>'+all.t+'</h3><p>'+all.d+' — يقيس مستواك في المقرر كاملًا.</p>'+
-     '<div class="meta"><i></i>'+all.items.length+' سؤالًا · الأصعب</div></div>';
-  g.innerHTML=h;
-  $('sSumQ').textContent=sum;
-  $('sAllQ').textContent=all.items.length;
+  $('homeGrid').innerHTML=h;
+  $('sSec').textContent=EX.length;
+  $('sQ').textContent=qc;
+  $('sE').textContent=ec;
 }
 
-function startQuiz(id){
-  cur=QUIZ.filter(function(z){return z.id===id;})[0];
-  idx=0; score=0; wrongs=[];
+function startExam(id){
+  cur=EX.filter(function(s){return s.id===id;})[0];
+  idx=0; score=0; results=[]; answered=false;
+  $('qTitle').textContent=cur.t;
   go('vQuiz');
+  if(cur.timed){ startTimer(cur.mins*60); } else { $('timerPill').style.display='none'; stopTimer(); }
   renderQ();
 }
+function restart(){ if(cur) startExam(cur.id); }
 
+function updateBar(){
+  $('qScore').textContent=Math.round(score*10)/10;
+  $('qIdx').textContent=idx+1;
+  $('qTot').textContent=cur.items.length;
+}
 function renderQ(){
   answered=false;
-  var it=cur.items[idx], tot=cur.items.length;
-  $('qTitle').textContent=cur.t;
-  $('qCount').textContent='سؤال '+(idx+1)+' من '+tot+'  ·  الدرجة: '+score;
-  $('progBar').style.width=((idx)/tot*100)+'%';
-  $('qNum').textContent='السؤال '+(idx+1);
+  var it=cur.items[idx], n=cur.items.length, ty=it.ty||'mcq';
+  var kinds={mcq:'اختيار من متعدد',tf:'صح أو خطأ',essay:'سؤال مقالي',je:'قيود محاسبية',num:'مسألة حسابية'};
+  $('qKind').className='qkind '+ty;
+  $('qKind').textContent=kinds[ty]||'سؤال';
+  $('qPts').textContent=it.pts+' نقطة';
   $('qText').textContent=it.q;
-  $('qFb').className='fb';
-  $('qFb').innerHTML='';
-  var n=$('qNext');
-  n.disabled=true;
-  n.textContent=(idx===tot-1)?'عرض النتيجة':'السؤال التالي';
-  var html='';
-  for(var i=0;i<it.o.length;i++){
-    html+='<div class="opt" onclick="pick('+i+')" id="o'+i+'"><span class="k">'+LETTERS[i]+'</span><span>'+it.o[i]+'</span></div>';
-  }
-  $('qOpts').innerHTML=html;
-}
-
-function pick(i){
-  if(answered) return;
-  answered=true;
-  var it=cur.items[idx], ok=(i===it.a);
-  if(ok){score++;}
-  else{wrongs.push({q:it.q,y:it.o[i],g:it.o[it.a],e:it.e});}
-  var opts=$('qOpts').children;
-  for(var k=0;k<opts.length;k++){
-    opts[k].className='opt lock';
-    opts[k].onclick=null;
-  }
-  opts[it.a].className='opt lock ok';
-  if(!ok) opts[i].className='opt lock no';
-  var fb=$('qFb');
-  fb.className='fb show '+(ok?'ok':'no');
-  fb.innerHTML='<span class="h">'+(ok?'✓ إجابة صحيحة':'✗ إجابة غير صحيحة')+'</span>'+
-    '<span>الإجابة الصحيحة: <b>'+it.o[it.a]+'</b></span>'+
-    (it.e?'<span class="exp">'+it.e+'</span>':'');
-  $('qNext').disabled=false;
-  $('qCount').textContent='سؤال '+(idx+1)+' من '+cur.items.length+'  ·  الدرجة: '+score;
-  $('progBar').style.width=(((idx+1)/cur.items.length)*100)+'%';
-}
-
-function nextQ(){
-  if(idx<cur.items.length-1){idx++;renderQ();}
-  else{finish();}
-}
-
-function finish(){
-  var tot=cur.items.length;
-  var pct=Math.round(score/tot*100);
-  go('vRes');
-  $('pct').textContent=pct+'%';
-  $('ring').style.setProperty('--p',pct+'%');
-  var t,m;
-  if(pct>=90){t='ممتاز — إتقان كامل';m='مستواك عالي جدًا، راجع فقط النقاط الصغيرة.';}
-  else if(pct>=75){t='جيد جدًا';m='مستواك قوي، راجع الأسئلة اللي غلطت فيها بس.';}
-  else if(pct>=60){t='جيد';m='محتاج مراجعة سريعة على الأجزاء اللي فيها أخطاء.';}
-  else{t='محتاج مذاكرة تانية';m='ارجع للملخص الخاص بالقسم ثم أعِد الاختبار.';}
-  $('resTitle').textContent=t;
-  $('resMsg').textContent='أجبت صحيحًا على '+score+' من '+tot+' سؤالًا — '+m;
-  var r='';
-  if(wrongs.length){
-    r='<h3>الأخطاء ومراجعتها</h3>';
-    wrongs.forEach(function(w){
-      r+='<div class="item"><b>'+w.q+'</b>'+
-         '<span class="y">إجابتك: '+w.y+'</span>'+
-         '<span class="g">الصحيحة: '+w.g+'</span>'+
-         (w.e?'<span class="g">'+w.e+'</span>':'')+'</div>';
-    });
+  $('progBar').style.width=(idx/n*100)+'%';
+  var ai=$('aiBox'); ai.className='ai'; ai.innerHTML='';
+  var nb=$('btnNext'); nb.disabled=true; nb.textContent=(idx===n-1)?'عرض النتيجة':'السؤال التالي';
+  var area=$('qArea');
+  if(ty==='mcq'||ty==='tf'){
+    var os=it.o||['صح','خطأ'], h='';
+    for(var i=0;i<os.length;i++){ h+='<div class="opt" onclick="pickMcq('+i+')"><span class="k">'+LETTERS[i]+'</span><span>'+os[i]+'</span></div>'; }
+    area.className='opts'; area.innerHTML=h;
   }else{
-    r='<h3>لا أخطاء — نتيجة كاملة.</h3>';
+    var ph=(ty==='num')?'اكتب الأرقام وخطوات الحساب...':(ty==='je'?'اكتب القيود: من حـ/ ... إلى حـ/ ...':'اكتب إجابتك بأسلوبك...');
+    area.className='';
+    area.innerHTML='<textarea id="answerIn" placeholder="'+ph+'"></textarea>'+
+      '<p class="hint">التصحيح يقيس المفاهيم الصحيحة في إجابتك بأي صياغة — ويُعطي درجة جزئية عند نقص بعض النقاط.</p>'+
+      '<div class="nav2" style="margin-top:12px"><button class="btn" id="btnGrade" onclick="gradeText()">صحّح إجابتي</button></div>';
   }
-  $('rev').innerHTML=r;
+  updateBar();
 }
 
-function restart(){startQuiz(cur.id);}
-
-buildHome();
-</script>
-
-
-<style>
-.qtype{display:inline-block;font-size:11.5px;font-weight:900;padding:2px 10px;border-radius:999px;margin-right:6px;vertical-align:middle;
-       background:#143557;border:1px solid #2a4a75;color:#9fb6d2}
-.qtype.mcq{background:rgba(249,115,22,.16);border-color:rgba(249,115,22,.5);color:#fdba74}
-.qtype.tf{background:rgba(30,58,138,.4);border-color:#2f5da8;color:#a9c7f0}
-.qtype.essay{background:rgba(234,88,12,.22);border-color:#f97316;color:#ffd7b0}
-.essaybox{width:100%;min-height:120px;background:#0c2240;border:1.5px solid #1b3a63;border-radius:14px;
-          padding:12px 14px;color:#dbe6f5;font-family:inherit;font-size:15px;font-weight:600;resize:vertical;line-height:1.9}
-.essaybox:focus{outline:none;border-color:var(--orange2)}
-.model{display:none;margin-top:14px;border-radius:14px;padding:13px 16px;background:rgba(249,115,22,.1);
-       border-right:6px solid var(--orange2);color:#ffd7b0;font-size:14.5px;font-weight:700;line-height:2}
-.model.show{display:block}
-.model b{color:#fff}
-.grade{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.grade .btn{flex:1 1 150px}
-.qcard-home .meta span{margin-left:8px}
-</style>
-
-<script>
-QUIZ = [];
-QUIZ.push(
-{ id:'ch1', n:'1', t:'الإطار النظري للمحاسبة المالية', d:'المفهوم · الأهداف · الفروض والمبادئ', items:[
- {q:'المحاسبة المالية في صورتها الحديثة تُوصَف بأنها:',ty:'mcq',o:['عملية فنية للتسجيل فقط','نشاط خدمي ونظام معلومات','فرع من فروع الرياضيات','أداة حكومية للرقابة'],a:1,e:'تطوّرت المحاسبة: عملية فنية ← نشاط خدمي ← نظام معلومات.'},
- {q:'المرحلة الأولى في تطوّر المحاسبة المالية كانت:',ty:'mcq',o:['نظام معلومات','نشاط خدمي','عملية فنية','نظام ضريبي'],a:2,e:'تسجيل · تبويب · تلخيص · استخلاص نتائج.'},
- {q:'أي مما يلي ليس من أهداف المحاسبة المالية؟',ty:'mcq',o:['توفير وتوصيل المعلومات','المحافظة على ممتلكات المشروع','المساعدة في التخطيط والرقابة','إخفاء النتائج عن الأطراف الخارجية'],a:3,e:'هدف المحاسبة خدمة مستخدمي المعلومات لا إخفاؤها.'},
- {q:'المحاسبة المالية تهتم بقياس الأحداث الاقتصادية:',ty:'mcq',o:['التاريخية فقط','المستقبلية فقط','التاريخية والمستقبلية','غير المالية فقط'],a:2,e:'قياس ما حدث وما يُتوقع حدوثه.'},
- {q:'عدد سمات المحاسبة الأساسية:',ty:'mcq',o:['3 سمات','4 سمات','5 سمات','6 سمات'],a:2,e:'لغة المال · نشاط خدمي · توصيل البيانات · نتائج الفترة · أصحاب العلاقة.'},
- {q:'وظيفة القياس في المحاسبة تشمل قياس:',ty:'mcq',o:['الموارد فقط','الحقوق والالتزامات فقط','الموارد والحقوق والتغيرات','المصروفات فقط'],a:2,e:'قياس الأصول والخصوم والتغيرات في الأرباح والخسائر.'},
- {q:'وظيفة الاتصال في المحاسبة:',ty:'mcq',o:['تبدأ قبل وظيفة القياس','تبدأ حيث تنتهي وظيفة القياس','مستقلة تمامًا عن القياس','لا علاقة لها بالقوائم المالية'],a:1,e:'تُعرض النتائج لمن يهمه الأمر عن طريق القوائم المالية.'},
- {q:'عدد فروع المحاسبة في المقرر:',ty:'mcq',o:['5 فروع','6 فروع','8 فروع','10 فروع'],a:2,e:'مالية · تكاليف · إدارية · حكومية · قومية · مراجعة · ضريبية · بيئية.'},
- {q:'الفرعان اللذان يهدفان إلى خدمة إدارة المنشأة:',ty:'mcq',o:['المالية والقومية','التكاليف والإدارية','الحكومية والضريبية','المراجعة والبيئية'],a:1,e:'يخدمان الأطراف الداخلية.'},
- {q:'القائمة الوحيدة التي تُعدّ على الأساس النقدي:',ty:'mcq',o:['قائمة الدخل','قائمة المركز المالي','قائمة التدفقات النقدية','قائمة التغيرات في حقوق الملكية'],a:2,e:'باقي القوائم تُعدّ على أساس الاستحقاق.'},
- {q:'عدد القوائم المالية التي ينتجها النظام المحاسبي:',ty:'mcq',o:['قائمتان','ثلاث قوائم','أربع قوائم','خمس قوائم'],a:2,e:'الدخل · المركز المالي · التدفقات النقدية · التغيرات في حقوق الملكية.'},
- {q:'عدد عناصر عنوان أي قائمة مالية:',ty:'mcq',o:['عنصران','ثلاثة عناصر','أربعة عناصر','خمسة عناصر'],a:1,e:'اسم المنشأة + اسم القائمة + تاريخ الإعداد أو الفترة المالية.'},
- {q:'عدد الفروض المحاسبية:',ty:'mcq',o:['فرضان','ثلاثة فروض','أربعة فروض','خمسة فروض'],a:2,e:'الشخصية المعنوية · الاستمرارية · القياس النقدي · ثبات وحدة النقد.'},
- {q:'قياس المعاملات نقديًا فقط دون الكميات يمثّل فرض:',ty:'mcq',o:['الاستمرارية','القياس النقدي','الدورية','الحيطة والحذر'],a:1,e:'لا تُقاس الكميات ولا الحالة المعنوية للأفراد.'},
- {q:'عدد المبادئ المحاسبية المتعارف عليها (GAAP) تسعة مبادئ.',ty:'tf',a:0,e:'تكلفة · دورية · استحقاق · مقابلة · إفصاح · ثبات · موضوعية · حيطة · فصل.'},
- {q:'مبدأ الحيطة والحذر يسمح بتسجيل الأرباح المتوقعة قبل تحققها.',ty:'tf',a:1,e:'يُسجَّل الخسائر المحتملة فقط، والأرباح المتوقعة لا تُسجَّل إلا إذا تحققت.'},
- {q:'تُعدّ قائمة الدخل على أساس الاستحقاق لا على الأساس النقدي.',ty:'tf',a:0,e:'الاستحقاق يُسجَّل عند تحقّق الإيراد أو تحمّل المصروف.'},
- {q:'عرّف المحاسبة المالية موضحًا تطورها عبر مراحله الثلاث.',ty:'essay',e:'المحاسبة المالية: (1) عملية فنية تشمل التسجيل والتبويب والتلخيص واستخلاص النتائج. (2) نشاط خدمي يوفّر معلومات كمية مالية لمساعدة متخذي القرارات. (3) نظام معلومات يعبّر عن المعاملات فيتّم تسجيلها ثم عرضها ثم توصيلها للأطراف الداخلية والخارجية.'},
- {q:'اشرح الفرق بين أساس الاستحقاق والأساس النقدي، وبيّن القائمة التي تُعدّ على كل أساس.',ty:'essay',e:'أساس الاستحقاق: يُسجَّل الإيراد عند تحققه (البيع أو تأدية الخدمة) والمصروف عند تحمّله، سواء حُصِّل أو دُفِع نقدًا أم لا، وتُعدّ به قائمة الدخل وقائمة المركز المالي وقائمة التغيرات في حقوق الملكية. الأساس النقدي: يُسجَّل الإيراد عند التحصيل والمصروف عند السداد النقدي فقط، وتُعدّ به قائمة التدفقات النقدية وحدها.'},
- {q:'عدّد المبادئ المحاسبية المتعارف عليها (GAAP) مع ذكر معنى مختصر لكل مبدأ.',ty:'essay',e:'1) التكلفة التاريخية: التسجيل بما أُنفق فعليًا. 2) الدورية: قياس نتائج كل فترة مالية. 3) الاستحقاق: تسجيل ما استحق عن الفترة. 4) المقابلة: مقابلة إيرادات الفترة بمصروفاتها. 5) الإفصاح والشفافية: عرض كل الحقائق الهامة. 6) الثبات: عدم تغيير الطرق إلا بإفصاح. 7) الموضوعية: القياس دون تحيز. 8) الحيطة والحذر: الأخذ بالخسائر المحتملة. 9) الفصل بين المصروف الإيرادي والرأسمالي.'}
-]},
-{ id:'ch2', n:'2', t:'عرض وإعداد القوائم المالية', d:'قائمة الدخل · المركز المالي', items:[
- {q:'المعادلة الأساسية لقائمة الدخل:',ty:'mcq',o:['الأصول = الخصوم + حقوق الملكية','الإيرادات − المصروفات = الربح أو الخسارة','الإيرادات + المصروفات = صافي الربح','المبيعات = المشتريات + المخزون'],a:1,e:'بمقارنة الإيرادات بالمصروفات تُستخلَص النتيجة.'},
- {q:'إذا تساوت الإيرادات مع المصروفات فإن النتيجة:',ty:'mcq',o:['ربح','خسارة','لا ربح ولا خسارة','لا يمكن تحديدها'],a:2,e:'تعادل الطرفين.'},
- {q:'عدد الحسابات الختامية في الشركات الصناعية:',ty:'mcq',o:['حسابان','ثلاثة حسابات','أربعة حسابات','خمسة حسابات'],a:1,e:'تكلفة الإنتاج (التشغيل) · المتاجرة · الأرباح والخسائر.'},
- {q:'الحساب الختامي الذي لا يُعدّ في الشركات التجارية:',ty:'mcq',o:['حـ/ المتاجرة','حـ/ الأرباح والخسائر','حـ/ تكلفة الإنتاج (التشغيل)','حـ/ بضاعة آخر المدة'],a:2,e:'خاص بالشركات الصناعية فقط.'},
- {q:'صافي المبيعات − تكلفة المبيعات =',ty:'mcq',o:['صافي الربح','مجمل الربح','تكلفة البضاعة المتاحة للبيع','الربح قبل الضريبة'],a:1,e:'ثم يُستكمل بحـ/ الأرباح والخسائر للوصول لصافي الربح.'},
- {q:'رصيد حـ/ المتاجرة يمثّل:',ty:'mcq',o:['صافي الربح أو الخسارة','مجمل الربح أو مجمل الخسارة','تكلفة المبيعات','الربح قبل الضريبة'],a:1,e:'وحـ/ الأرباح والخسائر رصيده صافي الربح أو الخسارة.'},
- {q:'تُحسب تكلفة المبيعات كالتالي:',ty:'mcq',o:['(أول المدة + المشتريات + نقل المشتريات − مردودات المشتريات) − آخر المدة','(آخر المدة + المشتريات) − أول المدة','المشتريات − المبيعات','أول المدة + آخر المدة'],a:0,e:'أول + مشتريات + نقل − مردودات = متاح للبيع، ثم − آخر المدة.'},
- {q:'تُقيَّم بضاعة آخر المدة بـ:',ty:'mcq',o:['التكلفة فقط','سعر البيع','التكلفة أو السوق أيهما أقل','القيمة الاسمية'],a:2,e:'قاعدة التقييم المتعارف عليها.'},
- {q:'في قائمة الدخل المستحدثة، مصروف الفوائد يُخصم:',ty:'mcq',o:['قبل مجمل الربح','بعد صافي أرباح النشاط','بعد ضريبة الدخل','لا يُخصم'],a:1,e:'مصروف تمويلي يأتي بعد صافي أرباح النشاط.'},
- {q:'ضريبة الدخل تُخصم في قائمة الدخل المستحدثة:',ty:'mcq',o:['قبل مجمل الربح','قبل البنود غير العادية','بعد البنود غير العادية','لا تُخصم'],a:2,e:'النتيجة النهائية: صافي الربح بعد الضريبة.'},
- {q:'أي مما يلي يُصنَّف ضمن المصروفات البيعية؟',ty:'mcq',o:['رواتب المكتب','عمولات البيع وإهلاك معدات البيع','ضرائب عقارية','مصروف الفوائد'],a:1,e:'المحاسبية الإدارية تضم رواتب المكتب والضرائب العقارية.'},
- {q:'حقوق الملكية في قائمة المركز المالي =',ty:'mcq',o:['رأس المال + الأرباح − المسحوبات','رأس المال + المسحوبات','الأصول − الإيرادات','الالتزامات + المصروفات'],a:0,e:'وصافي حقوق الملكية يظهر في جانب الخصوم.'},
- {q:'عدد عناصر عنوان أي قائمة مالية:',ty:'mcq',o:['عنصران','ثلاثة عناصر','أربعة عناصر','لا عدد ثابت'],a:1,e:'اسم المنشأة + اسم القائمة + التاريخ أو الفترة المالية.'},
- {q:'قائمة المركز المالي تُعدّ لبيان:',ty:'mcq',o:['نتيجة أعمال الفترة','ممتلكات الشركة والتزاماتها في تاريخ معيّن','التدفقات النقدية','التغير في رأس المال فقط'],a:1,e:'أو بيان بمصادر تمويل الأصول.'},
- {q:'قائمة المركز المالي تُعدّ في تاريخ معيّن لا عن فترة مالية.',ty:'tf',a:0,e:'بينما قائمة الدخل تُعدّ عن فترة مالية.'},
- {q:'المصروفات البيعية والإدارية تُخصم قبل الوصول إلى مجمل الربح.',ty:'tf',a:1,e:'مجمل الربح = صافي المبيعات − تكلفة المبيعات فقط، ثم تُخصم بعدها المصروفات.'},
- {q:'يُدرَج مصروف الفوائد ضمن المصروفات البيعية.',ty:'tf',a:1,e:'مصروف تمويلي مستقل يُخصم بعد صافي أرباح النشاط.'},
- {q:'احسب تكلفة المبيعات: بضاعة أول المدة 30,000 · المشتريات 90,000 · نقل المشتريات 5,000 · مردودات المشتريات 4,000 · بضاعة آخر المدة 25,000.',ty:'essay',e:'تكلفة البضاعة المتاحة للبيع = 30,000 + 90,000 + 5,000 − 4,000 = 121,000. تكلفة المبيعات = 121,000 − 25,000 = 96,000.'},
- {q:'اشرح الفرق بين الشكل التقليدي والشكل المستحدث لقائمة الدخل، مع بيان خطوات الشكل المستحدث.',ty:'essay',e:'الشكل التقليدي: حـ/ المتاجرة (ينتج مجمل الربح) ثم حـ/ الأرباح والخسائر (ينتج صافي الربح)، وللشركات الصناعية يُضاف حـ/ تكلفة الإنتاج. الشكل المستحدث: قائمة رأسية تحليلية خطواتها: المبيعات − مردودات المبيعات = صافي المبيعات ← − تكلفة المبيعات = مجمل الربح ← + إيرادات أخرى − مصروفات بيعية وإدارية = صافي أرباح النشاط ← ± بنود غير عادية = الربح قبل الضريبة ← − ضريبة الدخل = صافي الربح بعد الضريبة.'},
- {q:'اذكر عناصر جانب الأصول وجانب الخصوم وحقوق الملكية في قائمة المركز المالي التقليدية.',ty:'essay',e:'جانب الأصول: أصول ثابتة (أراضي · مباني · آلات · سيارات · استثمارات طويلة الأجل) + أصول متداولة (بضاعة آخر المدة · مدينون · أوراق قبض · أوراق مالية · نقدية) + أصول معنوية (شهرة المحل · براءة اختراع) + أرصدة مدينة أخرى. جانب الخصوم وحقوق الملكية: حقوق الملكية (رأس المال + الأرباح − المسحوبات) + التزامات طويلة الأجل + التزامات متداولة (دائنون · أوراق دفع · قروض قصيرة) + أرصدة دائنة أخرى.'}
-]}
-);
-</script>
-
-<script>
-QUIZ.push(
-{ id:'ch3', n:'3', t:'معادلة الميزانية', d:'الأصول = الخصوم + حقوق الملكية', items:[
- {q:'عناصر معادلة الميزانية الثلاثة هي:',ty:'mcq',o:['الإيرادات والمصروفات والأرباح','الأصول والخصوم وحقوق الملكية','النقدية والبنك والمخزون','رأس المال والمسحوبات والأرباح'],a:1,e:'ويجب أن يتساوى جانبا الميزانية دائمًا.'},
- {q:'الأصول − الخصوم =',ty:'mcq',o:['صافي الربح','رأس المال (صافي قيمة الأصول)','مجمل الربح','إجمالي الالتزامات'],a:1,e:'من الصور الحسابية للمعادلة.'},
- {q:'حقوق الملكية تزيد بـ:',ty:'mcq',o:['المسحوبات الشخصية','المصروفات','استثمارات المالك والإيرادات','الالتزامات قصيرة الأجل'],a:2,e:'المسحوبات والمصروفات تُنقص حقوق الملكية.'},
- {q:'تُنقص حقوق الملكية بـ:',ty:'mcq',o:['استثمارات المالك','الإيرادات','المسحوبات والمصروفات','زيادة رأس المال'],a:2,e:'وهذا هو صافي التغير في حقوق الملكية.'},
- {q:'الأصول الثابتة تُقتنى بهدف:',ty:'mcq',o:['إعادة البيع','الاستخدام في مزاولة النشاط أكثر من فترة محاسبية','التحويل لنقدية خلال سنة','الاستهلاك الكامل'],a:1,e:'لذلك لا تُصنَّف ضمن الأصول المتداولة.'},
- {q:'أي مما يلي يُصنَّف أصلًا غير ملموس (معنوي)؟',ty:'mcq',o:['الآلات والمعدات','شهرة المحل وبراءة الاختراع','المدينون','بضاعة آخر المدة'],a:1,e:'تفتقر للكيان المادي.'},
- {q:'الالتزامات المتداولة هي التي:',ty:'mcq',o:['تُسدَّد خلال أكثر من سنة مالية','تُسدَّد خلال سنة مالية أو دورة التشغيل','لا تُسدَّد إطلاقًا','تُسدَّد من الأرباح فقط'],a:1,e:'مثل الدائنون وأوراق الدفع والقروض قصيرة الأجل.'},
- {q:'شراء بضاعة بالأجل يؤثر على معادلة الميزانية بـ:',ty:'mcq',o:['زيادة أصل وزيادة التزام','نقص أصل وزيادة التزام','زيادة أصل ونقص أصل آخر','لا تأثير'],a:0,e:'تزيد البضاعة (أصل) ويزيد الدائنون (التزام).'},
- {q:'بيع بضاعة وتحصيل نصف القيمة نقدًا يؤدي إلى:',ty:'mcq',o:['زيادة النقدية والمدينون','نقص النقدية والمدينون','زيادة الالتزامات','نقص حقوق الملكية'],a:0,e:'نصف نقدي والنصف الآخر دين على العميل.'},
- {q:'دفع جزء من المستحق للمورد يؤدي إلى:',ty:'mcq',o:['زيادة أصل وزيادة التزام','نقص أصل ونقص التزام','زيادة أصل ونقص أصل آخر','زيادة حقوق الملكية'],a:1,e:'تنقص الخزينة وينقص الدائنون.'},
- {q:'القيد المزدوج يعني أن كل عملية مالية:',ty:'mcq',o:['تُسجَّل مرة واحدة','لها طرف مدين وطرف دائن متساويان في القيمة','تُسجَّل في الميزانية فقط','تُلغى إن لم تتوازن'],a:1,e:'وهو سبب تساوي جانبي الميزانية.'},
- {q:'الأرصدة المدينة الأخرى تشمل:',ty:'mcq',o:['الدائنون وأوراق الدفع','المصروفات المقدمة والإيرادات المستحقة','رأس المال والمسحوبات','القروض طويلة الأجل'],a:1,e:'مدفوعات مقدَّمة وحقوق مستحقة عن خدمات سابقة.'},
- {q:'المصادر الخارجية لتمويل أصول المنشأة تمثّلها:',ty:'mcq',o:['حقوق الملكية','الخصوم (الالتزامات)','الإيرادات','المسحوبات'],a:1,e:'بينما حقوق الملكية مصدر داخلي.'},
- {q:'أي مما يلي ليس من الأصول؟',ty:'mcq',o:['أوراق القبض','بضاعة آخر المدة','المسحوبات الشخصية للمالك','المدينون'],a:2,e:'المسحوبات تُخصم من حقوق الملكية.'},
- {q:'القيد المزدوج هو السبب في تساوي جانبي الميزانية.',ty:'tf',a:0,e:'كل عملية لها طرفان متساويان.'},
- {q:'المسحوبات الشخصية للمالك تزيد حقوق الملكية.',ty:'tf',a:1,e:'بل تُنقصها، لأنها تُخصم من رأس المال.'},
- {q:'الأصول المتداولة أصول ملموسة تُستخدم لأكثر من فترة محاسبية.',ty:'tf',a:1,e:'هذا وصف الأصول الثابتة؛ المتداولة يُتوقع تحويلها لنقدية خلال سنة أو دورة تشغيل.'},
- {q:'اشرح معادلة الميزانية بصورها الحسابية الأربع مع مثال رقمي.',ty:'essay',e:'الصور: (1) الأصول = الخصوم + رأس المال. (2) الأصول − الخصوم = رأس المال. (3) الأصول − الخصوم = صافي قيمة الأصول. (4) صافي قيمة الأصول = رأس المال. مثال: بدأ سعيد نشاطه بـ 100,000 نقدًا (أصول 100,000 = رأس مال 100,000)، ثم اشترى بضاعة بـ 15,000 على الحساب ودفع ثلثها نقدًا: الأصول 110,000 = رأس المال 100,000 + دائنون 10,000.'},
- {q:'بدء النشاط بـ 200,000 نقدًا، ثم شراء أجهزة بـ 80,000 نقدًا، ثم شراء بضاعة بـ 30,000 على الحساب. حلّل أثر كل عملية على معادلة الميزانية.',ty:'essay',e:'(1) أصول (نقدية) 200,000 = رأس المال 200,000. (2) أجهزة 80,000 + نقدية 120,000 = 200,000 (زيادة أصل ونقص أصل آخر بلا تغيير في الإجمالي). (3) بضاعة 30,000 مقابل دائنون 30,000 ← الأصول 230,000 = رأس المال 200,000 + دائنون 30,000.'},
- {q:'فرّق بين الأصول الثابتة والمتداولة وغير الملموسة مع ذكر مثال لكل نوع.',ty:'essay',e:'الأصول الثابتة: أصول ملموسة تُقتنى للاستخدام وليس لإعادة البيع ويُتوقع استخدامها أكثر من فترة محاسبية (أراضي · مباني · آلات · سيارات). الأصول المتداولة: النقدية والأصول التي يُتوقع تحويلها لنقدية خلال السنة المالية أو دورة التشغيل أيهما أطول (المخزون · المدينون · أوراق القبض). الأصول غير الملموسة: موارد مملوكة يُتوقع الاستفادة منها مستقبلًا لكنها تفتقر للكيان المادي (شهرة المحل · براءة الاختراع · العلامة التجارية).'}
-]},
-{ id:'ch4', n:'4', t:'الدورة المحاسبية وتحليل العمليات', d:'اليومية · الأستاذ · ميزان المراجعة', items:[
- {q:'الدورة المحاسبية هي:',ty:'mcq',o:['قائمة مالية','مجموعة خطوات متتابعة تبدأ فور حدوث العمليات المالية','دفتر من الدفاتر','تقرير سنوي'],a:1,e:'تنتهي بإقفال الحسابات وتدويرها.'},
- {q:'عدد خطوات الدورة المحاسبية:',ty:'mcq',o:['4 خطوات','6 خطوات','8 خطوات','10 خطوات'],a:2,e:'تبدأ بالتحليل من المستندات.'},
- {q:'الخطوة الأولى في الدورة المحاسبية:',ty:'mcq',o:['الترحيل للأستاذ','تحليل العمليات من واقع المستندات','إعداد ميزان المراجعة','التسويات الجردية'],a:1,e:'ثم التسجيل في اليومية فالترحيل للأستاذ.'},
- {q:'الخطوة الرابعة في الدورة المحاسبية:',ty:'mcq',o:['تسجيل العمليات باليومية','الترحيل للأستاذ','إعداد ميزان المراجعة','إقفال الحسابات'],a:2,e:'وتأتي بعدها التسويات الجردية.'},
- {q:'الخطوة التي تلي إعداد ميزان المراجعة في الدورة:',ty:'mcq',o:['التسجيل باليومية','إجراء التسويات الجردية','إعداد القوائم المالية مباشرة','الترحيل'],a:1,e:'ثم ميزان المراجعة بعد التسويات فالقوائم ثم الإقفال.'},
- {q:'في دفتر اليومية يُكتب الطرف المدين:',ty:'mcq',o:['ثانيًا بعد الدائن','أولًا في خانة مدين','في خانة البيان فقط','لا يُكتب'],a:1,e:'يُكتب أولًا في خانة مدين ثم الدائن أسفله بإزاحة.'},
- {q:'القيد الذي كل طرف فيه حساب واحد يُسمّى:',ty:'mcq',o:['قيدًا بسيطًا','قيدًا مركّبًا','قيدًا معوَّضًا','قيدًا معدومًا'],a:0,e:'المركّب فيه أكثر من حساب في أحد الطرفين.'},
- {q:'القيد المركّب هو الذي:',ty:'mcq',o:['له طرف واحد','يوجد في أحد طرفيه أو كليهما أكثر من حساب','لا يتوازن','يُسجَّل بالأستاذ فقط'],a:1,e:'مع بقاء تساوي الجانبين.'},
- {q:'طبيعة حساب الأصول:',ty:'mcq',o:['مدين','دائن','حسب الحالة','لا طبيعة له'],a:0,e:'وكذلك المصروفات مدينة.'},
- {q:'طبيعة حساب الإيرادات:',ty:'mcq',o:['مدين','دائن','حسب الحالة','يُقفل في الميزانية'],a:1,e:'وكذلك الخصوم وحقوق الملكية دائنة.'},
- {q:'عند تخفيض حساب طبيعته مدين فإنه:',ty:'mcq',o:['يُجعَل مدينًا أيضًا','يُجعَل دائنًا','لا يُسجَّل','يُرحَّل للميزانية'],a:1,e:'القاعدة الخامسة: عكس أصل الحساب عند التخفيض.'},
- {q:'يكون رصيد الحساب صفرًا إذا:',ty:'mcq',o:['مجموع المدين أكبر','مجموع الدائن أكبر','تساوى مجموع الجانبين','لا توجد حركة'],a:2,e:'حالتا الرصيد: مدين أو دائن، وإلا فلا رصيد.'},
- {q:'يقوم الترحيل إلى دفتر الأستاذ على أساس:',ty:'mcq',o:['تاريخ حدوث العملية','نوع العملية لا تاريخها','رقم الفاتورة','حروف الحساب'],a:1,e:'تُخصَّص صفحة أو أكثر لكل نوع من الأحداث الاقتصادية.'},
- {q:'عدد أنواع ميزان المراجعة:',ty:'mcq',o:['نوعان','ثلاثة أنواع','أربعة أنواع','خمسة أنواع'],a:1,e:'بالمجاميع · بالأرصدة · بالمجاميع والأرصدة.'},
- {q:'ميزان المراجعة يُعدّ داخل الدفاتر المحاسبية.',ty:'tf',a:1,e:'يُعدّ خارج الدفاتر بغرض التحقق من صحة التسجيل والترحيل والترصيد.'},
- {q:'ميزان المراجعة يكشف جميع الأخطاء المحاسبية.',ty:'tf',a:1,e:'لا يكشف الأخطاء المعوَّضة التي يبقى معها الميزان متوازنًا.'},
- {q:'كل خطوات الدورة المحاسبية تُنفَّذ على أساس تاريخ حدوث العملية.',ty:'tf',a:1,e:'الترحيل يقوم على أساس نوع العملية وليس تاريخها.'},
- {q:'اذكر خطوات الدورة المحاسبية الثمانية بالترتيب.',ty:'essay',e:'1) تحليل العمليات من واقع المستندات. 2) تسجيل العمليات في دفتر/دفاتر اليومية. 3) الترحيل إلى دفتر/دفاتر الأستاذ. 4) إعداد ميزان المراجعة. 5) إجراء التسويات الجردية. 6) إعداد ميزان المراجعة بعد التسويات. 7) إعداد القوائم المالية. 8) إقفال الحسابات وتدويرها.'},
- {q:'اكتب قيود اليومية: (أ) بدء النشاط برأس مال 150,000 نقدًا. (ب) شراء أثاث بـ 40,000 نقدًا. (ج) شراء بضاعة بـ 20,000 على الحساب.',ty:'essay',e:'(أ) من حـ/ الخزينة 150,000 — إلى حـ/ رأس المال 150,000. (ب) من حـ/ الأثاث (أصل ثابت) 40,000 — إلى حـ/ الخزينة 40,000. (ج) من حـ/ المشتريات 20,000 — إلى حـ/ الدائنين 20,000.'},
- {q:'اشرح قواعد المدينية والدائنية الخمس، وطبّقها على حـ/ المشتريات وحـ/ المبيعات.',ty:'essay',e:'القواعد: (1) المصروفات في ح/ المتاجرة والأرباح والخسائر وكل عناصر الأصول في الميزانية أصلها مدين. (2) الإيرادات والخصوم ورأس المال أصلها دائن. (3) زيادة الحسابات المدينة تُجعَل مدينة. (4) زيادة الحسابات الدائنة تُجعَل دائنة. (5) تخفيض أي حساب بعكس أصله. التطبيق: المشتريات مصروف ← مدين عند الزيادة، ويُجعَل دائنًا عند إرجاع جزء منها (مردودات المشتريات مستقلًا). المبيعات إيراد ← دائن عند الزيادة، وتُجعَل مدينة عند الردّ (مردودات المبيعات مستقلًا).'}
-]}
-);
-</script>
-
-<script>
-QUIZ.push(
-{ id:'ch5', n:'5', t:'العمليات التجارية للمشروع', d:'الشيكات · الخصومات · المردودات', items:[
- {q:'في قيد التحصيل النقدي يكون الطرف المدين:',ty:'mcq',o:['حـ/ الخزينة','حـ/ المبيعات','حـ/ رأس المال','حـ/ المدينين'],a:0,e:'ثم يُقابله الحساب الدائن المناسب (مبيعات · مدينين · رأس مال …).'},
- {q:'المسحوب عليه في الشيك هو:',ty:'mcq',o:['محرر الشيك','البنك','المستفيد','الدائن'],a:1,e:'البنك المودَع فيه أموال الساحب.'},
- {q:'الساحب في الشيك هو:',ty:'mcq',o:['البنك','صاحب الحساب الجاري محرر الشيك','المستفيد','الحامل'],a:1,e:'والطرف الثالث هو المستفيد.'},
- {q:'عدد أركان الشيك:',ty:'mcq',o:['3 أركان','4 أركان','5 أركان','6 أركان'],a:2,e:'التاريخ · المستفيد · اسم البنك · المبلغ بالأرقام والحروف · التوقيع.'},
- {q:'الشيك في تعريفه أمر:',ty:'mcq',o:['معلّق على شرط','كتابي غير معلّق على شرط','شفوي','يحتاج موافقة المستفيد'],a:1,e:'يُدفَع بمجرد الاطلاع.'},
- {q:'شرط البيع «2/10 صافي 30» يعني:',ty:'mcq',o:['خصم 10% إذا سدّد خلال يومين','خصم 2% إذا سدّد خلال 10 أيام وأصل المدة 30 يومًا','خصم 30% خلال 10 أيام','لا خصم إطلاقًا'],a:1,e:'الخصم يُثبَت فقط عند السداد خلال فترة الخصم.'},
- {q:'الخصم التجاري من حيث الإثبات في الدفاتر:',ty:'mcq',o:['يُفتح له حساب مستقل','لا يُثبت مقابله وتُسجَّل الفاتورة بالصافي','يُعتبر مصروفًا','يُعتبر إيرادًا'],a:1,e:'بخلاف الخصم النقدي الذي يُثبت بحساب مستقل.'},
- {q:'الخصم المكتسب بالنسبة للمشتري يُعدّ:',ty:'mcq',o:['مصروفًا','إيرادًا','أصلًا','التزامًا'],a:1,e:'ويُتاح عند السداد خلال فترة الخصم.'},
- {q:'الخصم المسموح به بالنسبة للبائع يُعدّ:',ty:'mcq',o:['إيرادًا','مصروفًا','أصلًا','لا يُثبت'],a:1,e:'يُفتح له حساب مستقل ويُجعَل مدينًا.'},
- {q:'طبيعة حساب مردودات المشتريات:',ty:'mcq',o:['مدين','دائن','لا طبيعة له','يُقفل في الميزانية'],a:1,e:'ومردودات المبيعات مدين.'},
- {q:'عند ردّ بضاعة مشتراة نقدًا يكون القيد:',ty:'mcq',o:['من حـ/ مردودات المشتريات إلى حـ/ الخزينة','من حـ/ الخزينة إلى حـ/ مردودات المشتريات','من حـ/ الدائنين إلى حـ/ المشتريات','لا قيد'],a:1,e:'يُبرَّد الحساب المدينة (الخزينة) وتُجعَل مردودات المشتريات دائنة.'},
- {q:'الطريقة التي تُثبت الشيك في حساب مستقل حتى التحصيل هي:',ty:'mcq',o:['اعتباره محصّلًا فورًا','شيكات تحت التحصيل (برسم التحصيل)','إلغاء الشيك','تسجيله في أوراق الدفع'],a:1,e:'تُقفل عند إشعار البنك بالتحصيل.'},
- {q:'إذا سُجِّل الشيك في «شيكات تحت التحصيل» ثم رُفِض فإن القيد:',ty:'mcq',o:['من حـ/ المدينين إلى حـ/ شيكات تحت التحصيل','من حـ/ شيكات تحت التحصيل إلى حـ/ المدينين','من حـ/ البنك إلى حـ/ المدينين','لا قيد'],a:0,e:'يعود الدين على العميل.'},
- {q:'طبيعة حساب مردودات المبيعات:',ty:'mcq',o:['مدين','دائن','لا طبيعة له','أصل'],a:0,e:'تُخصم من المبيعات في حـ/ المتاجرة.'},
- {q:'عند استلام شيك من عميل يجب دائمًا اعتباره محصّلًا فورًا.',ty:'tf',a:1,e:'يجوز اعتباره محصّلًا فورًا، أو إثباته في شيكات تحت التحصيل حتى إشعار البنك.'},
- {q:'في حالة رفض البنك للشيك الصادر من المنشأة تُعكس القيود السابقة.',ty:'tf',a:0,e:'من حـ/ البنك إلى حـ/ الدائنين.'},
- {q:'الخصم النقدي لا يُثبت مقابله في الدفاتر المحاسبية.',ty:'tf',a:1,e:'هذه صفة الخصم التجاري؛ الخصم النقدي يُفتح له حساب مستقل.'},
- {q:'عرّف الشيك واذكر أركانه والأطراف الثلاثة فيه ومسؤوليات كل طرف.',ty:'essay',e:'الشيك: أمر كتابي غير معلّق على شرط من شخص له حساب جارٍ في بنك، يطلب فيه من البنك أن يدفع بمجرد الاطلاع مبلغًا محددًا لشخص معيّن أو لأمره أو لحامله. أركانه: تاريخ التحرير · اسم المستفيد · اسم البنك · المبلغ بالأرقام والحروف · توقيع الساحب. أطرافه: الساحب (صاحب الحساب الجاري) · المسحوب عليه (البنك) · المستفيد (من يحق له صرف القيمة أو تظهيرها).'},
- {q:'اكتب قيود بيع بضاعة بـ 20,000 بشرط 2/10 صافي 30، ثم سدّد العميل خلال 7 أيام.',ty:'essay',e:'1) عند البيع: من حـ/ المدينين 20,000 — إلى حـ/ المبيعات 20,000. 2) عند السداد خلال 7 أيام: الخصم = 20,000 × 2% = 400، فيكون القيد: من حـ/ الخزينة 19,600 + من حـ/ الخصم المسموح به 400 — إلى حـ/ المدينين 20,000. (ولو سدّد بعد 10 أيام لا يُثبَت الخصم: من حـ/ الخزينة 20,000 — إلى حـ/ المدينين 20,000).'},
- {q:'فرّق بين الخصم التجاري والخصم النقدي من حيث الأساس والإثبات في الدفاتر والقيمة المسجَّلة.',ty:'essay',e:'الخصم التجاري: يُحسب على إجمالي قيمة الفاتورة وقت البيع مباشرة، ولا يُثبت مقابله في الدفاتر المحاسبية، وتُسجَّل الفاتورة بصافي القيمة. الخصم النقدي: يعتمد على شروط البيع الآجل ويُحسب عند السداد خلال فترة الائتمان الممنوحة، ويُثبت مقابله في الدفاتر المحاسبية بحساب مستقل (مكتسب إيراد للمشتري · مسموح به مصروف على البائع).'}
-]},
-{ id:'ch6', n:'6', t:'الأوراق التجارية — الكمبيالات', d:'السند الإذني · التظهير · الأجيو', items:[
- {q:'الكمبيالة في دفاتر البائع (المنشأة) تُسمّى:',ty:'mcq',o:['أوراق الدفع','أوراق القبض','شيكات تحت التحصيل','مدينون'],a:1,e:'وعند المشتري تُسمّى أوراق دفع.'},
- {q:'الكمبيالة في دفاتر المشتري تُسمّى:',ty:'mcq',o:['أوراق القبض','أوراق الدفع','أوراق مالية','دائنون'],a:1,e:'لأنه المتعهد بالسداد.'},
- {q:'عدد احتمالات التصرف في الأوراق التجارية:',ty:'mcq',o:['3 احتمالات','5 احتمالات','7 احتمالات','9 احتمالات'],a:2,e:'الاحتفاظ · الإرسال للبنك · التظهير · الخصم · الضمان · التجديد · الإفلاس.'},
- {q:'معادلة الأجيو (رسم الخصم) هي:',ty:'mcq',o:['القيمة الأسمية × معدل الخصم ÷ 100 × المدة','القيمة الاسمية + المصروفات','القيمة الاسمية ÷ المدة','الفوائد × 2'],a:0,e:'ويمثّل مصروفًا مستحقًا بدفاتر حائز الكمبيالة.'},
- {q:'عند إرسال الكمبيالة للبنك للتحصيل، قيد حائزها:',ty:'mcq',o:['من حـ/ البنك إلى حـ/ أوراق القبض','من حـ/ أوراق قبض برسم التحصيل إلى حـ/ أوراق القبض','من حـ/ أوراق القبض برسم الخصم إلى حـ/ البنك','لا يوجد قيد'],a:1,e:'ثم تُقفل عند إشعار البنك بالتحصيل مع عمولة التحصيل.'},
- {q:'الأجيو عند خصم الكمبيالة يُعتبر بدفاتر حائزها:',ty:'mcq',o:['إيرادًا','مصروفًا مستحقًا','أصلًا','التزامًا'],a:1,e:'يُحمَّل على حائز الكمبيالة.'},
- {q:'عند رفض الكمبيالة في ميعاد الاستحقاق يكون القيد عند حائزها:',ty:'mcq',o:['من حـ/ المدينين إلى حـ/ أوراق القبض','من حـ/ أوراق القبض إلى حـ/ المدينين','من حـ/ البنك إلى حـ/ المدينين','لا قيد'],a:0,e:'مع إثبات مصروفات البروتستو على المدين.'},
- {q:'مصروفات البروتستو هي:',ty:'mcq',o:['عمولة البنك على التحصيل','الاحتجاج الرسمي على رفض السداد','فوائد التجديد','خصم تعجيل الدفع'],a:1,e:'تُحمَّل على المسحوب عليه.'},
- {q:'التظهير (التحويل) في الكمبيالات يعني:',ty:'mcq',o:['إلغاء الكمبيالة','تحويلها لطرف ثالث لسداد المستحق له','تجديد أجل الاستحقاق','خصمها لدى البنك'],a:1,e:'ويقوم مقام السداد للمورد.'},
- {q:'عند إفلاس المسحوب عليه وعدم تحصيل الكمبيالة تُسجَّل:',ty:'mcq',o:['إيرادًا','ديونًا معدومة','أصلًا ثابتًا','خصمًا مكتسبًا'],a:1,e:'تُقفل في حـ/ الديون المعدومة.'},
- {q:'القيمة الجديدة عند تجديد الكمبيالة المرفوضة تشمل:',ty:'mcq',o:['القيمة القديمة فقط','القيمة القديمة + المصروفات القضائية + الفوائد المتفق عليها','القيمة القديمة − الفوائد','الفوائد فقط'],a:1,e:'مع مدّ أجل الاستحقاق.'},
- {q:'القيمة الحالية للكمبيالة عند خصمها لدى البنك =',ty:'mcq',o:['القيمة الاسمية + الأجيو','القيمة الاسمية − الأجيو','القيمة الاسمية × المدة','الأجيو فقط'],a:1,e:'فيُودَع صافي القيمة في حساب البنك.'},
- {q:'في حالة إرسال الكمبيالة للبنك للتحصيل، القيود عند المشتري:',ty:'mcq',o:['لا يوجد قيود','من أوراق الدفع إلى البنك','من البنك إلى أوراق الدفع','من الخزينة إلى أوراق الدفع'],a:0,e:'لأن العملية بين حائزها والبنك فقط.'},
- {q:'تقديم الكمبيالة للبنك كضمان بهدف:',ty:'mcq',o:['بيعها','الحصول على قرض','إلغائها','تجديدها'],a:1,e:'من احتمالات التصرف السبع.'},
- {q:'في حالة التظهير تُجرى قيود في دفاتر المشتري (المسحوب عليه).',ty:'tf',a:1,e:'لا تُجرى قيود عنده في التظهير؛ القيود عند حائز الكمبيالة والطرف الثالث.'},
- {q:'الأجيو يُعتبر مصروفًا مستحقًا بدفاتر حائز الكمبيالة.',ty:'tf',a:0,e:'ويُحمَّل عليه عند الخصم.'},
- {q:'كمبيالة قيمتها 60,000 خُصمت لمدة شهرين بمعدل خصم 12% فيكون الأجيو 1,200.',ty:'tf',a:0,e:'60,000 × 12 ÷ 100 × (2÷12) = 1,200.'},
- {q:'اذكر احتمالات التصرف السبعة في الأوراق التجارية بعد تحريرها وقبولها.',ty:'essay',e:'1) الاحتفاظ بها حتى ميعاد الاستحقاق (تحصيل أو رفض). 2) إرسالها للبنك لتحصيلها نيابة عن حائزها. 3) تحويلها (تظهيرها) لطرف ثالث لسداد المستحق له. 4) خصمها (قطعها) لدى البنك والحصول على قيمتها الحالية. 5) تقديمها للبنك كضمان للحصول على قرض. 6) تجديدها بعد الرفض بمدّ الأجل. 7) إفلاس المسحوب عليه (تحصيل جزئي أو ديون معدومة).'},
- {q:'اكتب القيود في دفاتر البائع والمشتري عند بيع بضاعة آجلة بـ 40,000 وتحرير كمبيالة بها.',ty:'essay',e:'دفاتر البائع (س): (1) من حـ/ المدينين 40,000 — إلى حـ/ المبيعات 40,000. (2) من حـ/ أوراق القبض 40,000 — إلى حـ/ المدينين 40,000. دفاتر المشتري (ص): (1) من حـ/ المشتريات 40,000 — إلى حـ/ الدائنين 40,000. (2) من حـ/ الدائنين 40,000 — إلى حـ/ أوراق الدفع 40,000.'},
- {q:'احسب الأجيو لكمبيالة قيمتها 90,000 خُصمت لدى البنك بمعدل خصم 15% لمدة 4 شهور، واكتب قيود الخصم.',ty:'essay',e:'الأجيو = 90,000 × 15 ÷ 100 × (4÷12) = 4,500. القيود: (1) عند إرسالها للبنك للخصم: من حـ/ أوراق القبض برسم الخصم 90,000 — إلى حـ/ أوراق القبض 90,000 (ولا توجد قيود عند المشتري). (2) عند إشعار البنك بالخصم وإيداع الصافي: من حـ/ مصروفات خصم الكمبيالة (الأجيو) 4,500 + من حـ/ البنك 85,500 — إلى حـ/ أوراق القبض برسم الخصم 90,000.'}
-]}
-);
-</script>
-
-<script>
-QUIZ.push(
-{ id:'ch7', n:'7', t:'معالجة الأخطاء المحاسبية', d:'أنواع الأخطاء · طرق التصحيح', items:[
- {q:'عدد أنواع الأخطاء المحاسبية في المقرر:',ty:'mcq',o:['نوعان','ثلاثة أنواع','أربعة أنواع','خمسة أنواع'],a:2,e:'حذف/سهو · ارتكاب · فنية · معوَّضة.'},
- {q:'الخطأ المعوَّض (المتكافئ) خطير لأنه:',ty:'mcq',o:['يظهر في قائمة الدخل','يجعل ميزان المراجعة غير متوازن','يُبقي ميزان المراجعة متوازنًا فلا يكشفه','يوقف العمل المحاسبي'],a:2,e:'لذلك لا يظهر عند إعداد ميزان المراجعة.'},
- {q:'عدم تسجيل عملية بأكملها في دفتر اليومية يُعدّ:',ty:'mcq',o:['خطأ حذف أو سهو','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:0,e:'وكذلك عدم ترحيلها أو عدم تسجيل أحد الطرفين.'},
- {q:'تسجيل اسم الحساب خطأً يُعدّ:',ty:'mcq',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:1,e:'من أبرز صور أخطاء الارتكاب.'},
- {q:'الخلط بين المصروف الإيرادي والمصروف الرأسمالي يُعدّ:',ty:'mcq',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:2,e:'الخطأ الفني = عدم التطبيق السليم للمبادئ والقواعد.'},
- {q:'تكرار ترحيل قيد بدفتر الأستاذ يُعدّ:',ty:'mcq',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','تعويضًا مقصودًا'],a:1,e:'من صور أخطاء الارتكاب.'},
- {q:'الطريقة المطوّلة في تصحيح الأخطاء تتكوّن من:',ty:'mcq',o:['خطوة واحدة','خطوتين: إلغاء القيد الخطأ ثم إثبات القيد الصحيح','ثلاث خطوات','لا تتطلب قيودًا'],a:1,e:'مع عدم كشط أي معلومات في الدفاتر.'},
- {q:'الطريقة المختصرة في التصحيح تعني:',ty:'mcq',o:['إلغاء القيد ثم إثباته','تصحيح طرف القيد الخطأ بقيد يومية جديد مباشرة','كشط القيد','إعادة فتح الدفاتر'],a:1,e:'ويُحدَّد مكان الخطأ في القيد ثم يُصحَّح.'},
- {q:'الكشط أو التعديل في الدفاتر المحاسبية:',ty:'mcq',o:['مسموح عند الضرورة','ممنوع والإلغاء يكون بقيد عكسي','مسموح للمحاسب الأول','مسموح بعد موافقة المدير'],a:1,e:'لضمان سلامة الدفاتر وعدم التلاعب.'},
- {q:'إضافة مصروفات صيانة المبنى إلى حـ/ المباني كأصل ثابت مثال على:',ty:'mcq',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:2,e:'خلط بين مصروف إيرادي ومصروف رأسمالي.'},
- {q:'كتابة حـ/ المشتريات بدلًا من حـ/ شراء أصل ثابت مثال على:',ty:'mcq',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','خطأ معوَّض'],a:3,e:'الخطأ في طرف يعوّضه خطأ آخر بنفس المقدار فيبقى الميزان متوازنًا.'},
- {q:'الطريقة المفضَّلة في التطبيق العملي لتصحيح الأخطاء:',ty:'mcq',o:['المختصرة','المطوّلة','الكشط','ترك الخطأ'],a:1,e:'لأن هناك أخطاء لا يمكن تصحيحها بالطريقة المختصرة.'},
- {q:'تُكتشف الأخطاء المحاسبية بسهولة عند:',ty:'mcq',o:['توازن ميزان المراجعة','عدم توازن جانبي ميزان المراجعة','إعداد قائمة الدخل','زيادة المبيعات'],a:1,e:'ويجب أيضًا مراجعة المستندات والقيود وحسابات الأستاذ.'},
- {q:'ترحيل مبلغ صحيح إلى حساب مخالف بدفتر الأستاذ يُعدّ:',ty:'mcq',o:['خطأ حذف','خطأ ارتكاب','خطأ فني','لا خطأ'],a:1,e:'من صور أخطاء الارتكاب.'},
- {q:'يُصحَّح الخطأ المحاسبي بالكشط في الدفاتر.',ty:'tf',a:1,e:'الكشط ممنوع، والإلغاء يكون بقيد عكسي.'},
- {q:'الطريقة المختصرة تصلح لتصحيح جميع أنواع الأخطاء.',ty:'tf',a:1,e:'هناك أخطاء لا يمكن تصحيحها إلا بالطريقة المطوّلة.'},
- {q:'ميزان المراجعة لا يكشف الخطأ المعوَّض.',ty:'tf',a:0,e:'لأن الخطأ يعوّضه خطأ آخر بنفس المقدار فيبقى الميزان متوازنًا.'},
- {q:'اشرح أنواع الأخطاء المحاسبية الأربعة مع ذكر مثال لكل نوع.',ty:'essay',e:'1) أخطاء الحذف أو السهو: عدم تسجيل عملية بأكملها، أو عدم ترحيلها كاملة، أو عدم تسجيل/ترحيل أحد طرفي القيد. 2) أخطاء الارتكاب: إثبات مبلغ مخالف بطرفي القيد، أو تسجيل اسم الحساب خطأً، أو تكرار قيد باليومية أو ترحيله بالأستاذ، أو ترحيل مبلغ صحيح لحساب مخالف. 3) الأخطاء الفنية: الخلط بين المصروف الإيرادي والرأسمالي، مثل إضافة مصروفات الصيانة إلى حـ/ المباني كأصل. 4) الأخطاء المعوَّضة (المتكافئة): خطأ في طرف يعوّضه خطأ آخر بنفس المقدار في حساب آخر، مثل تسجيل المشتريات بدل شراء أصل ثابت.'},
- {q:'سُجِّل شراء بضاعة بالأجل بمبلغ 60,000 بالخطأ كالتالي: من حـ/ المشتريات 60,000 — إلى حـ/ الدائنون 25,000. صحّح الخطأ بالطريقة المطوّلة.',ty:'essay',e:'الخطوة (أ) إلغاء القيد الخطأ: من حـ/ الدائنون 25,000 — إلى حـ/ المشتريات 60,000 (قيد عكسي دون كشط). الخطوة (ب) إثبات القيد الصحيح: من حـ/ المشتريات 60,000 — إلى حـ/ الدائنون 60,000. وبهذا يعود الحسابان إلى وضعهما الصحيح.'},
- {q:'قارن بين الطريقة المطوّلة والطريقة المختصرة في تصحيح الأخطاء، وبيّن أيهما يُفضَّل ولماذا.',ty:'essay',e:'الطريقة المطوّلة: تتم على خطوتين — إلغاء القيد الخطأ بقيد عكسي دون كشط، ثم إثبات القيد الصحيح؛ وتصلح لجميع الأخطاء. الطريقة المختصرة: خطوة واحدة — يُحدَّد مكان الخطأ داخل القيد ويُصحَّح مباشرة بقيد يومية جديد. ويُفضَّل تطبيقيًا اتباع الطريقة المطوّلة لأن هناك أخطاء لا يمكن تصحيحها بالطريقة المختصرة، مع الحفاظ على مبدأ عدم الكشط في الدفاتر.'}
-]}
-);
-</script>
-
-<script>
-QUIZ.push(
-{ id:'all', n:'★', t:'الاختبار الشامل', d:'كل الفصول — اختياري وصح/خطأ ومقالي', big:true, items:[
- {q:'المحاسبة المالية في صورتها الحديثة تُوصَف بأنها:',ty:'mcq',o:['عملية فنية للتسجيل فقط','نشاط خدمي ونظام معلومات','فرع من الرياضيات','أداة حكومية للرقابة'],a:1,e:'عملية فنية ← نشاط خدمي ← نظام معلومات.'},
- {q:'القائمة الوحيدة التي تُعدّ على الأساس النقدي:',ty:'mcq',o:['قائمة الدخل','قائمة المركز المالي','قائمة التدفقات النقدية','قائمة التغيرات في حقوق الملكية'],a:2,e:'باقي القوائم على أساس الاستحقاق.'},
- {q:'عدد المبادئ المحاسبية المتعارف عليها (GAAP):',ty:'mcq',o:['5 مبادئ','7 مبادئ','9 مبادئ','11 مبدأً'],a:2,e:'تكلفة · دورية · استحقاق · مقابلة · إفصاح · ثبات · موضوعية · حيطة · فصل.'},
- {q:'«عدم تسجيل المعاملات ما لم يكن هناك دليل على حدوثها» هو مبدأ:',ty:'mcq',o:['الإفصاح','الموضوعية','الحيطة والحذر','الثبات'],a:1,e:'قياس موضوعي بمستندات ودون تحيز.'},
- {q:'تقارير محاسبة التكاليف والإدارية تهدف إلى:',ty:'mcq',o:['خدمة الأطراف الخارجية','خدمة إدارة المنشأة','إعداد الإقرار الضريبي','خدمة البنوك'],a:1,e:'الأطراف الداخلية.'},
- {q:'الفرض الذي يعتبر الشركة كيانًا مستقلًا عن مالكيها:',ty:'mcq',o:['الاستمرارية','القياس النقدي','الشخصية المعنوية المستقلة','ثبات وحدة النقد'],a:2,e:'كل المعاملات باسم الشركة.'},
- {q:'المعادلة الأساسية لقائمة الدخل:',ty:'mcq',o:['الأصول = الخصوم + حقوق الملكية','الإيرادات − المصروفات = الربح أو الخسارة','الإيرادات + المصروفات = الربح','المبيعات = المشتريات + المخزون'],a:1,e:'بمقارنة الإيرادات بالمصروفات.'},
- {q:'صافي المبيعات − تكلفة المبيعات =',ty:'mcq',o:['صافي الربح','مجمل الربح','الربح قبل الضريبة','تكلفة البضاعة المتاحة للبيع'],a:1,e:'ثم تُخصم المصروفات للوصول لصافي الربح.'},
- {q:'تُقيَّم بضاعة آخر المدة بـ:',ty:'mcq',o:['التكلفة فقط','سعر البيع','التكلفة أو السوق أيهما أقل','القيمة الاسمية'],a:2,e:'قاعدة التقييم المتعارف عليها.'},
- {q:'عدد الحسابات الختامية في الشركات الصناعية:',ty:'mcq',o:['حسابان','ثلاثة حسابات','أربعة حسابات','خمسة حسابات'],a:1,e:'تكلفة الإنتاج · المتاجرة · الأرباح والخسائر.'},
- {q:'حقوق الملكية تزيد بـ:',ty:'mcq',o:['المسحوبات الشخصية','المصروفات','استثمارات المالك والإيرادات','الالتزامات'],a:2,e:'المسحوبات والمصروفات تُنقصها.'},
- {q:'أي مما يلي أصل غير ملموس (معنوي)؟',ty:'mcq',o:['الآلات','شهرة المحل وبراءة الاختراع','المدينون','المخزون'],a:1,e:'تفتقر للكيان المادي.'},
- {q:'شراء بضاعة بالأجل يؤثر على معادلة الميزانية بـ:',ty:'mcq',o:['زيادة أصل وزيادة التزام','نقص أصل ونقص التزام','زيادة أصل ونقص أصل آخر','لا تأثير'],a:0,e:'تزيد البضاعة ويزيد الدائنون.'},
- {q:'عدد خطوات الدورة المحاسبية:',ty:'mcq',o:['4 خطوات','6 خطوات','8 خطوات','10 خطوات'],a:2,e:'تبدأ بالتحليل وتنتهي بالإقفال والتدوير.'},
- {q:'يكون للحساب رصيد مدين إذا:',ty:'mcq',o:['مجموع الدائن أكبر','مجموع المدين أكبر','تساوى الجانبان','لا حركة على الحساب'],a:1,e:'وإذا تساوى الجانبان فلا رصيد.'},
- {q:'ميزان المراجعة يُعدّ:',ty:'mcq',o:['داخل الدفاتر','خارج الدفاتر للتحقق من صحة التسجيل والترحيل والترصيد','بديلًا عن قائمة الدخل','من واقع الجرد الفعلي فقط'],a:1,e:'كشف لا قائمة مالية.'},
- {q:'طبيعة حساب الإيرادات:',ty:'mcq',o:['مدين','دائن','حسب الحالة','لا طبيعة له'],a:1,e:'وكذلك الخصوم وحقوق الملكية.'},
- {q:'القيد الذي يحتوي على أكثر من حساب في أحد طرفيه يُسمّى:',ty:'mcq',o:['قيدًا بسيطًا','قيدًا مركّبًا','قيدًا معوَّضًا','قيدًا معدومًا'],a:1,e:'مع بقاء تساوي الجانبين.'},
- {q:'المسحوب عليه في الشيك هو:',ty:'mcq',o:['محرر الشيك','البنك','المستفيد','الدائن'],a:1,e:'الساحب محرر الشيك والمستفيد من يحق له الصرف.'},
- {q:'شرط البيع «2/10 صافي 30» يعني:',ty:'mcq',o:['خصم 10% خلال يومين','خصم 2% إذا سدّد خلال 10 أيام وأصل المدة 30 يومًا','خصم 30% خلال 10 أيام','لا خصم'],a:1,e:'يُثبَت الخصم عند السداد خلال فترة الخصم.'},
- {q:'الخصم التجاري من حيث الإثبات في الدفاتر:',ty:'mcq',o:['يُفتح له حساب مستقل','لا يُثبت مقابله وتُسجَّل الفاتورة بالصافي','يُعتبر مصروفًا','يُعتبر إيرادًا'],a:1,e:'بخلاف الخصم النقدي.'},
- {q:'طبيعة حساب مردودات المشتريات:',ty:'mcq',o:['مدين','دائن','لا طبيعة له','أصل'],a:1,e:'ومردودات المبيعات مدين.'},
- {q:'الكمبيالة في دفاتر البائع تُسمّى:',ty:'mcq',o:['أوراق الدفع','أوراق القبض','دائنون','شيكات تحت التحصيل'],a:1,e:'وعند المشتري أوراق دفع.'},
- {q:'معادلة الأجيو هي:',ty:'mcq',o:['القيمة الأسمية × معدل الخصم ÷ 100 × المدة','القيمة الاسمية + المصروفات','القيمة الاسمية ÷ المدة','الفوائد × 2'],a:0,e:'ويمثّل مصروفًا مستحقًا على حائز الكمبيالة.'},
- {q:'الخطأ المعوَّض (المتكافئ) خطير لأنه:',ty:'mcq',o:['يظهر في قائمة الدخل','يجعل ميزان المراجعة غير متوازن','يُبقي ميزان المراجعة متوازنًا فلا يكشفه','يوقف العمل'],a:2,e:'لا يكشفه ميزان المراجعة.'},
- {q:'مصروفات البروتستو هي:',ty:'mcq',o:['عمولة البنك على التحصيل','الاحتجاج الرسمي على رفض السداد','فوائد التجديد','خصم تعجيل الدفع'],a:1,e:'تُحمَّل على المسحوب عليه.'},
- {q:'قائمة المركز المالي تُعدّ في تاريخ معيّن لا عن فترة مالية.',ty:'tf',a:0,e:'بينما قائمة الدخل تُعدّ عن فترة مالية.'},
- {q:'يجب أن يتساوى جانبا الميزانية (الأصول والخصوم وحقوق الملكية).',ty:'tf',a:0,e:'بسبب قاعدة القيد المزدوج.'},
- {q:'الأجيو = القيمة الأسمية × معدل الخصم ÷ 100 × المدة.',ty:'tf',a:0,e:'وهي معادلة رسم الخصم.'},
- {q:'الخصم التجاري يُفتح له حساب مستقل في الدفاتر.',ty:'tf',a:1,e:'الخصم التجاري لا يُثبت؛ الذي يُفتح له حساب مستقل هو الخصم النقدي.'},
- {q:'المسحوبات الشخصية للمالك تزيد حقوق الملكية.',ty:'tf',a:1,e:'بل تُنقصها.'},
- {q:'تُعدّ قائمة الدخل على الأساس النقدي.',ty:'tf',a:1,e:'تُعدّ على أساس الاستحقاق؛ والنقدي لقائمة التدفقات فقط.'},
- {q:'يقوم الترحيل إلى دفتر الأستاذ على أساس تاريخ حدوث العملية.',ty:'tf',a:1,e:'يقوم على أساس نوع العملية لا تاريخها.'},
- {q:'ميزان المراجعة يكشف الأخطاء المعوَّضة.',ty:'tf',a:1,e:'لا يكشفها لأن الميزان يبقى متوازنًا.'},
- {q:'اشرح القوائم المالية الأربع موضحًا الهدف من كل قائمة.',ty:'essay',e:'1) قائمة الدخل: تُوضَع فيها الإيرادات والمصروفات عن الفترة المالية، وبمقارنتها يُستخلَص الربح أو الخسارة. 2) قائمة المركز المالي (الميزانية العمومية): تُوضِّح ممتلكات الشركة والالتزامات المستحقة عليها في تاريخ معيّن، أو مصادر تمويل الأصول. 3) قائمة التدفقات النقدية: القائمة الوحيدة التي تُعدّ على الأساس النقدي، وتبيّن التدفقات الداخلة والخارجة. 4) قائمة التغيرات في حقوق الملكية: تُوضِّح التغير في رأس المال والأرباح المحتجزة والمسحوبات خلال الفترة.'},
- {q:'من بيانات شركة: بضاعة أول المدة 40,000 · المشتريات 120,000 · نقل المشتريات 6,000 · مردودات المشتريات 5,000 · بضاعة آخر المدة 35,000 · المبيعات 200,000 · مردودات المبيعات 10,000. احسب صافي المبيعات وتكلفة المبيعات ومجمل الربح.',ty:'essay',e:'صافي المبيعات = 200,000 − 10,000 = 190,000. تكلفة البضاعة المتاحة للبيع = 40,000 + 120,000 + 6,000 − 5,000 = 161,000. تكلفة المبيعات = 161,000 − 35,000 = 126,000. مجمل الربح = 190,000 − 126,000 = 64,000.'},
- {q:'اذكر خطوات الدورة المحاسبية الثمانية، ثم اشرح ميزان المراجعة وأنواعه الثلاثة.',ty:'essay',e:'الخطوات: تحليل العمليات من المستندات ← التسجيل بدفتر اليومية ← الترحيل إلى دفتر الأستاذ ← إعداد ميزان المراجعة ← التسويات الجردية ← ميزان المراجعة بعد التسويات ← إعداد القوائم المالية ← إقفال الحسابات وتدويرها. ميزان المراجعة: كشف يُعدّ خارج الدفاتر للتحقق من صحة تسجيل القيود وترحيلها وترصيدها، وأنواعه: (1) بالمجاميع (مجموع مدين ومجموع دائن). (2) بالأرصدة (رصيد مدين ورصيد دائن). (3) بالمجاميع والأرصدة معًا في أربعة أعمدة.'},
- {q:'اكتب قيود اليومية: بدء النشاط برأس مال 300,000 نقدًا · شراء أثاث بـ 90,000 نقدًا · شراء بضاعة بـ 50,000 على الحساب · بيع بضاعة بـ 70,000 نقدًا.',ty:'essay',e:'(1) من حـ/ الخزينة 300,000 — إلى حـ/ رأس المال 300,000. (2) من حـ/ الأثاث 90,000 — إلى حـ/ الخزينة 90,000. (3) من حـ/ المشتريات 50,000 — إلى حـ/ الدائنين 50,000. (4) من حـ/ الخزينة 70,000 — إلى حـ/ المبيعات 70,000.'},
- {q:'احسب الأجيو لكمبيالة قيمتها 120,000 خُصمت لدى البنك بمعدل خصم 10% لمدة 6 شهور، ثم اكتب قيود الخصم.',ty:'essay',e:'الأجيو = 120,000 × 10 ÷ 100 × (6÷12) = 6,000. القيود: (1) عند الإرسال للبنك للخصم: من حـ/ أوراق القبض برسم الخصم 120,000 — إلى حـ/ أوراق القبض 120,000 (ولا قيود عند المشتري). (2) عند إشعار البنك بالخصم وإيداع الصافي: من حـ/ مصروفات خصم الكمبيالة (الأجيو) 6,000 + من حـ/ البنك 114,000 — إلى حـ/ أوراق القبض برسم الخصم 120,000.'},
- {q:'اشرح أنواع الأخطاء المحاسبية الأربعة وطرق تصحيحها بالتفصيل.',ty:'essay',e:'الأنواع: (1) أخطاء الحذف أو السهو: عدم تسجيل عملية كاملة أو ترحيلها أو عدم تسجيل أحد طرفي القيد. (2) أخطاء الارتكاب: مبلغ مخالف بطرفي القيد، أو اسم حساب خطأ، أو تكرار قيد/ترحيل، أو ترحيل مبلغ صحيح لحساب مخالف. (3) الأخطاء الفنية: عدم التطبيق السليم للمبادئ كالخلط بين المصروف الإيرادي والرأسمالي. (4) الأخطاء المعوَّضة: خطأ يعوّضه خطأ آخر بنفس المقدار فيبقى الميزان متوازنًا. طرق التصحيح: الطريقة المطوّلة (إلغاء القيد الخطأ بقيد عكسي دون كشط ثم إثبات القيد الصحيح) والطريقة المختصرة (تصحيح طرف القيد الخطأ مباشرة بقيد جديد)، ويُفضَّل تطبيقيًا العمل بالطريقة المطوّلة.'}
-]}
-);
-</script>
-
-<script>
-/* ============ محرّك الأسئلة الموسّع (اختياري · صح/خطأ · مقالي) ============ */
-function typeCount(z){
-  var m=0,t=0,e=0;
-  z.items.forEach(function(x){
-    var ty=x.ty||'mcq';
-    if(ty==='essay'){e++;}else if(ty==='tf'){t++;}else{m++;}
-  });
-  var s='';
-  if(m) s+='<span>اختياري '+m+'</span>';
-  if(t) s+='<span>صح/خطأ '+t+'</span>';
-  if(e) s+='<span>مقالي '+e+'</span>';
-  return s;
-}
-
-function buildHome(){
-  var g=$('homeGrid'), h='', sum=0;
-  QUIZ.forEach(function(z){
-    if(z.id==='all') return;
-    sum+=z.items.length;
-    h+='<div class="qcard-home" onclick="startQuiz(\''+z.id+'\')">'+
-       '<div class="n">'+z.n+'</div><h3>'+z.t+'</h3><p>'+z.d+'</p>'+
-       '<div class="meta"><i></i>'+z.items.length+' سؤالًا</div>'+
-       '<div class="meta">'+typeCount(z)+'</div></div>';
-  });
-  var all=QUIZ.filter(function(z){return z.id==='all';})[0];
-  h+='<div class="qcard-home big" onclick="startQuiz(\'all\')">'+
-     '<div class="n">'+all.n+'</div><h3>'+all.t+'</h3><p>'+all.d+' — يقيس مستواك في المقرر كاملًا.</p>'+
-     '<div class="meta"><i></i>'+all.items.length+' سؤالًا · الأصعب</div>'+
-     '<div class="meta">'+typeCount(all)+'</div></div>';
-  g.innerHTML=h;
-  $('sSumQ').textContent=sum;
-  $('sAllQ').textContent=all.items.length;
-}
-
-function renderQ(){
-  answered=false;
-  var it=cur.items[idx], tot=cur.items.length;
-  var ty=it.ty||'mcq';
-  var lbl=(ty==='essay')?'سؤال مقالي':((ty==='tf')?'صح أو خطأ':'اختيار من متعدد');
-  $('qTitle').textContent=cur.t;
-  $('qCount').textContent='سؤال '+(idx+1)+' من '+tot+'  ·  الدرجة: '+score;
-  $('progBar').style.width=(idx/tot*100)+'%';
-  $('qNum').innerHTML='السؤال '+(idx+1)+' <span class="qtype '+ty+'">'+lbl+'</span>';
-  $('qText').textContent=it.q;
-  var fb=$('qFb'); fb.className='fb'; fb.innerHTML='';
-  var nb=$('qNext'); nb.disabled=true; nb.textContent=(idx===tot-1)?'عرض النتيجة':'السؤال التالي';
-  if(ty==='essay'){
-    $('qOpts').innerHTML=
-      '<textarea class="essaybox" id="essayIn" placeholder="اكتب إجابتك هنا في حدود الإجابة النموذجية..."></textarea>'+
-      '<div class="grade"><button class="btn ghost" onclick="revealModel()">اعرض الإجابة النموذجية</button></div>'+
-      '<div class="model" id="modelBox"><b>الإجابة النموذجية:</b><br>'+it.e+'</div>';
-  }else{
-    var os=it.o||['صح','خطأ'], html='';
-    for(var i=0;i<os.length;i++){
-      html+='<div class="opt" onclick="pick('+i+')" id="o'+i+'"><span class="k">'+LETTERS[i]+'</span><span>'+os[i]+'</span></div>';
-    }
-    $('qOpts').innerHTML=html;
-  }
-}
-
-function pick(i){
+function pickMcq(i){
   if(answered) return;
   answered=true;
   var it=cur.items[idx], os=it.o||['صح','خطأ'], ok=(i===it.a);
-  if(ok){score++;}else{wrongs.push({q:it.q,y:os[i],g:os[it.a],e:it.e});}
-  var opts=$('qOpts').children;
-  for(var k=0;k<opts.length;k++){opts[k].className='opt lock';opts[k].onclick=null;}
-  opts[it.a].className='opt lock ok';
-  if(!ok) opts[i].className='opt lock no';
-  var fb=$('qFb');
-  fb.className='fb show '+(ok?'ok':'no');
-  fb.innerHTML='<span class="h">'+(ok?'✓ إجابة صحيحة':'✗ إجابة غير صحيحة')+'</span>'+
-               '<span>الإجابة الصحيحة: <b>'+os[it.a]+'</b></span>'+
-               (it.e?'<span class="exp">'+it.e+'</span>':'');
-  $('qNext').disabled=false;
-  $('qCount').textContent='سؤال '+(idx+1)+' من '+cur.items.length+'  ·  الدرجة: '+score;
-  $('progBar').style.width=(((idx+1)/cur.items.length)*100)+'%';
+  var gained=ok?it.pts:0; score+=gained;
+  results.push({q:it.q,pts:it.pts,got:gained,pct:ok?1:0,
+    gotList:ok?['إجابتك صحيحة']:[],
+    missList:ok?[]:['الإجابة الصحيحة: '+os[it.a]],
+    ref:it.e||''});
+  var box=$('qArea').children;
+  for(var k=0;k<box.length;k++){ box[k].className='opt lock'; box[k].onclick=null; }
+  box[it.a].className='opt lock ok';
+  if(!ok) box[i].className='opt lock no';
+  var ai=$('aiBox'); ai.className='ai show';
+  ai.innerHTML='<div class="head"><b>'+(ok?'إجابة صحيحة':'إجابة غير صحيحة')+'</b><span class="score">'+gained+' / '+it.pts+' نقطة</span></div>'+
+    (it.e?'<div class="ref"><b>التعليل:</b> '+it.e+'</div>':'');
+  $('btnNext').disabled=false;
+  updateBar();
 }
 
-function revealModel(){
-  $('modelBox').className='model show';
-  if(document.getElementById('gradeBox')) return;
-  var g=document.createElement('div');
-  g.className='grade'; g.id='gradeBox';
-  g.innerHTML='<button class="btn" onclick="selfGrade(true)">إجابتي مطابقة — احسبها صحيحة</button>'+
-              '<button class="btn ghost" onclick="selfGrade(false)">إجابتي ناقصة أو خطأ</button>';
-  $('qOpts').appendChild(g);
+function showAI(gained,pts,pct,got,miss,ref){
+  var ai=$('aiBox'); ai.className='ai show';
+  var msg=(pct>=0.999)?'إجابة كاملة':(pct>=0.7?'إجابة جيدة — ناقصك بعض النقاط':(pct>=0.4?'إجابة جزئية':'إجابة غير مكتملة'));
+  var h='<div class="head"><b>نتيجة التصحيح الذكي: '+msg+'</b><span class="score">'+gained+' / '+pts+' نقطة ('+Math.round(pct*100)+'%)</span></div>';
+  if(got.length) h+='<ul>'+got.map(function(x){return '<li class="got">'+x+'</li>';}).join('')+'</ul>';
+  if(miss.length) h+='<ul>'+miss.map(function(x){return '<li class="miss">'+x+'</li>';}).join('')+'</ul>';
+  if(!got.length&&!miss.length) h+='<div class="ref">لم يتم التعرف على نقاط مطابقة.</div>';
+  if(ref) h+='<div class="ref"><b>الإجابة المرجعية:</b> '+ref+'</div>';
+  ai.innerHTML=h;
 }
 
-function selfGrade(ok){
+function gradeText(){
   if(answered) return;
-  answered=true;
   var it=cur.items[idx];
-  if(ok){score++;}else{wrongs.push({q:it.q,y:'إجابة ناقصة أو غير مطابقة',g:'راجع الإجابة النموذجية',e:it.e});}
-  var g=document.getElementById('gradeBox'); if(g) g.style.display='none';
-  var ta=document.getElementById('essayIn'); if(ta) ta.disabled=true;
-  var fb=$('qFb');
-  fb.className='fb show '+(ok?'ok':'no');
-  fb.innerHTML='<span class="h">'+(ok?'✓ تم احتساب الإجابة لك':'✗ راجع الإجابة النموذجية')+'</span>'+
-               '<span class="exp">'+it.e+'</span>';
-  $('qNext').disabled=false;
-  $('qCount').textContent='سؤال '+(idx+1)+' من '+cur.items.length+'  ·  الدرجة: '+score;
-  $('progBar').style.width=(((idx+1)/cur.items.length)*100)+'%';
+  var ta=$('answerIn'), raw=ta?ta.value:'';
+  if(raw.replace(/\s/g,'').length<3){
+    var ai0=$('aiBox'); ai0.className='ai show';
+    ai0.innerHTML='<div class="head"><b>اكتب إجابتك أولًا ثم اضغط «صحّح إجابتي».</b></div>';
+    return;
+  }
+  var txt=norm(raw), nums=numbersIn(txt);
+  var keys=it.keys||[], got=[], miss=[], wSum=0, wGot=0;
+  for(var i=0;i<keys.length;i++){
+    var w=keys[i].w||1; wSum+=w;
+    if(keyHit(keys[i],txt,nums)){ wGot+=w; got.push(keys[i].d); } else { miss.push(keys[i].d); }
+  }
+  var pct=wSum?(wGot/wSum):0;
+  var gained=Math.round(it.pts*pct*10)/10;
+  score+=gained;
+  results.push({q:it.q,pts:it.pts,got:gained,pct:pct,gotList:got,missList:miss,ref:it.ref||''});
+  answered=true;
+  showAI(gained,it.pts,pct,got,miss,it.ref||'');
+  if(ta) ta.disabled=true;
+  var bg=$('btnGrade'); if(bg) bg.disabled=true;
+  $('btnNext').disabled=false;
+  updateBar();
+  setTimeout(function(){ try{ $('aiBox').scrollIntoView({behavior:'smooth',block:'center'}); }catch(e){} },120);
 }
 
-buildHome();
+function nextQ(){
+  if(idx<cur.items.length-1){ idx++; renderQ(); window.scrollTo(0,0); }
+  else { finish(); }
+}
+
+function finish(){
+  stopTimer();
+  var max=0; cur.items.forEach(function(i){ max+=i.pts; });
+  var pct=max?Math.round(score/max*100):0;
+  $('ring').style.setProperty('--p',pct+'%');
+  $('pct').textContent=pct+'%';
+  $('resT').textContent=(pct>=90)?'مستوى ممتاز — جاهز للميد-تيرم':(pct>=75)?'جيد جدًا — قريب من الإتقان':(pct>=60)?'جيد — يحتاج مراجعة موضعية':'يحتاج إعادة مذاكرة الأقسام';
+  $('resP').textContent='حصلت على '+(Math.round(score*10)/10)+' من '+max+' نقطة';
+  var h='<h3>المراجعة التفصيلية</h3>';
+  if(!results.length) h+='<div class="rv"><div class="l">لم يتم تسجيل أي إجابة.</div></div>';
+  results.forEach(function(r,i){
+    h+='<div class="rv"><div class="q">'+(i+1)+') '+r.q+'</div>'+
+       '<div class="l">الدرجة: <b>'+(Math.round(r.got*10)/10)+' / '+r.pts+'</b></div>';
+    if(r.gotList&&r.gotList.length) h+='<div class="l">ما حققته: '+r.gotList.join(' · ')+'</div>';
+    if(r.missList&&r.missList.length) h+='<div class="l">ما ينقصك: '+r.missList.join(' · ')+'</div>';
+    if(r.ref) h+='<div class="l">الإجابة المرجعية: <b>'+r.ref+'</b></div>';
+    h+='</div>';
+  });
+  $('revBox').innerHTML=h;
+  go('vRes');
+}
+
+function tick(){
+  var m=Math.floor(remain/60), s=remain%60;
+  $('timer').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  if(remain<=0){ stopTimer(); finish(); return; }
+  remain--;
+}
+function startTimer(sec){
+  stopTimer(); remain=sec; $('timerPill').style.display='inline-block'; tick();
+  timerId=setInterval(tick,1000);
+}
+function stopTimer(){ if(timerId){ clearInterval(timerId); timerId=null; } }
+
+</script>
+
+<script>
+var EX = [];
+EX.push(
+{ id:'ch1', n:'1', t:'الإطار النظري والفروض والمبادئ', d:'حالات تطبيقية على المبادئ والفروض والأسس', items:[
+ {ty:'mcq',pts:2,q:'شركة «النور» تُعدّ تقارير مالية شهرية عن نتائج أعمالها وتُقارنها بالشهر السابق. المبدأ الذي يفرض هذا التوقيت هو:',o:['التكلفة التاريخية','الدورية','الحيطة والحذر','الثبات'],a:1,e:'تقسيم عمر المنشأة إلى فترات مالية متساوية وقياس نتائج كل فترة.'},
+ {ty:'mcq',pts:2,q:'سجّلت شركة إيرادًا متوقعًا من قضية قضائية لم يصدر فيها حكم نهائي بعد. المبدأ الذي خالفته:',o:['الموضوعية','الحيطة والحذر','الإفصاح','الاستحقاق'],a:1,e:'مبدأ الحيطة لا يسمح بتسجيل الأرباح المتوقعة قبل تحققها، وإنما تُسجَّل الخسائر المحتملة.'},
+ {ty:'mcq',pts:2,q:'غيّرت المنشأة طريقة تقييم المخزون من المتوسط المرجح إلى الوارد أولًا صادر أولًا، ولم تُفصح عن التغيير ولا عن أثره. المبدآن المخالفان:',o:['الثبات والإفصاح','الحيطة والموضوعية','التكلفة والدورية','المقابلة والاستحقاق'],a:0,e:'الثبات يمنع تغيير الطرق دون مبرر، والإفصاح يُلزم ببيان أثر التغيير.'},
+ {ty:'mcq',pts:2,q:'اشترت منشأة سيارة بـ 500,000 وقيمتها السوقية 700,000، فسجّلتها بـ 500,000. المبدأ المطبَّق:',o:['الحيطة والحذر','التكلفة التاريخية','الإفصاح والشفافية','المقابلة'],a:1,e:'الأصول تُسجَّل بتكلفتها الفعلية وقت الاقتناء لا بقيمتها السوقية.'},
+ {ty:'tf',pts:1,q:'الأساس النقدي أكثر ملاءمة من أساس الاستحقاق لقياس نتيجة أعمال الفترة.',a:1,e:'أساس الاستحقاق أدقّ في قياس النتيجة لأن أساس النقدي يُغفل الاستحقاقات.'},
+ {ty:'tf',pts:1,q:'مبدأ المقابلة يعني مقابلة إيرادات الفترة بمصروفات الفترة نفسها.',a:0,e:'لذلك تُعالج المصروفات المقدمة والمستحقة في نهاية الفترة.'},
+ {ty:'essay',pts:5,q:'منشأة صغيرة الحجم لا تُمسك دفاتر منتظمة وترغب في قياس أرباحها ومعرفة حركة نقديتها. حدّد الأساس المحاسبي الملائم لها مع التعليل، واذكر القائمة الوحيدة التي تُعدّ على هذا الأساس.',
+  keys:[{d:'الأساس الملائم هو الأساس النقدي',s:['الاساس النقدي','النقدي','اساس نقدي'],n:1},
+        {d:'التعليل: تُسجَّل الإيرادات عند التحصيل والمصروفات عند السداد (لا تعتمد على الاستحقاق)',s:['التحصيل','السداد','عند الدفع','الاستحقاق','الاستحقاقي'],n:1},
+        {d:'القائمة الوحيدة على هذا الأساس: قائمة التدفقات النقدية',s:['التدفقات','التدفق النقدي'],n:1}],
+  ref:'الأساس النقدي: لأنه لا تُمسك دفاتر منتظمة ولن تقيس الاستحقاقات، فتُسجَّل الإيرادات عند تحصيلها نقدًا والمصروفات عند سدادها. والقائمة الوحيدة التي تُعدّ على الأساس النقدي هي قائمة التدفقات النقدية.'},
+ {ty:'essay',pts:5,q:'وضّح الفرق بين المصروف الإيرادي والمصروف الرأسمالي، ثم بيّن أثر إثبات مصروف رأسمالي كمصروف إيرادي على قائمة الدخل وقائمة المركز المالي.',
+  keys:[{d:'المصروف الإيرادي: يخدم فترة محاسبية واحدة ويُحمَّل على حـ/ الأرباح والخسائر',s:['فتره واحده','فترة واحدة','الايرادي','الارباح والخسائر'],n:2},
+        {d:'المصروف الرأسمالي: يُضاف إلى تكلفة الأصل الثابت ويُستهلك على عدة فترات',s:['راسمالي','تكلفة الاصل','الاصل الثابت','يستهلك','عدة فترات'],n:2},
+        {d:'الأثر: نقص صافي ربح الفترة وتخفيض قيمة الأصول',s:['نقص','انخفاض','الربح','الاصول'],n:2}],
+  ref:'المصروف الإيرادي يخص فترة واحدة ويُحمَّل على قائمة الدخل. المصروف الرأسمالي يُضاف لتكلفة الأصل الثابت ويُستهلك على فترات. وإثبات رأسمالي كمصروف إيرادي يُنقص صافي ربح الفترة ويُخفّض قيمة الأصول في قائمة المركز المالي.'}
+]},
+{ id:'ch2', n:'2', t:'إعداد القوائم المالية وحساباتها', d:'حسابات تكلفة المبيعات ومجمل الربح والصافي', items:[
+ {ty:'num',pts:3,q:'بيانات شركة «الأمل»: بضاعة أول المدة 45,000 · المشتريات 160,000 · نقل المشتريات 8,000 · مردودات المشتريات 6,000 · بضاعة آخر المدة 40,000. احسب تكلفة المبيعات.',
+  keys:[{d:'تكلفة المبيعات = 167,000',s:['167000','167'],n:1}],
+  ref:'تكلفة البضاعة المتاحة للبيع = 45,000 + 160,000 + 8,000 − 6,000 = 207,000، وتكلفة المبيعات = 207,000 − 40,000 = 167,000.'},
+ {ty:'num',pts:3,q:'استكمالًا للمعادلة السابقة: المبيعات 258,000 · مردودات المبيعات 8,000 · تكلفة المبيعات 167,000. احسب مجمل الربح.',
+  keys:[{d:'مجمل الربح = 83,000',s:['83000','83'],n:1}],
+  ref:'صافي المبيعات = 258,000 − 8,000 = 250,000، ومجمل الربح = 250,000 − 167,000 = 83,000.'},
+ {ty:'num',pts:4,q:'استكمالًا: مجمل الربح 83,000 · المصروفات البيعية 12,000 · المصروفات الإدارية 18,000 · مصروف الفوائد 5,000 · ضريبة الدخل 9,600. احسب صافي الربح بعد الضريبة.',
+  keys:[{d:'صافي الربح بعد الضريبة = 38,400',s:['38400','384'],n:1}],
+  ref:'صافي أرباح النشاط = 83,000 − 12,000 − 18,000 = 53,000، وبعد خصم الفوائد = 48,000، وبعد الضريبة = 38,400.'},
+ {ty:'mcq',pts:2,q:'البند الذي يظهر في قائمة المركز المالي ولا يظهر في قائمة الدخل:',o:['مردودات المبيعات','مصروف الفوائد','بضاعة آخر المدة','نقل المشتريات'],a:2,e:'بضاعة آخر المدة أصل متداول في قائمة المركز المالي، ومردودات المبيعات ونقل المشتريات تُخصم في حـ/ المتاجرة.'},
+ {ty:'mcq',pts:2,q:'منشأة صناعية تُعدّ قوائمها المالية. عدد الحسابات الختامية التي تُعدّها:',o:['حساب واحد','حسابان','ثلاثة حسابات','أربعة حسابات'],a:2,e:'تكلفة الإنتاج (التشغيل) ثم المتاجرة ثم الأرباح والخسائر.'},
+ {ty:'tf',pts:1,q:'تُخصم مردودات المبيعات من المبيعات للوصول إلى صافي المبيعات.',a:0,e:'ومردودات المشتريات تُخصم من المشتريات في حـ/ المتاجرة.'},
+ {ty:'essay',pts:5,q:'رتّب بالترتيب الصحيح خطوات إعداد قائمة الدخل بالشكل المستحدث، بدءًا من المبيعات وحتى صافي الربح بعد الضريبة.',
+  keys:[{d:'صافي المبيعات = المبيعات − مردودات المبيعات',s:['صافي المبيعات','مردودات المبيعات']},
+        {d:'خصم تكلفة المبيعات للوصول إلى مجمل الربح',s:['تكلفة المبيعات','مجمل الربح'],n:2},
+        {d:'إضافة الإيرادات الأخرى وخصم المصروفات البيعية والإدارية = صافي أرباح النشاط',s:['ايرادات اخرى','البيعيه والاداريه','صافي ارباح النشاط','ارباح النشاط'],n:2},
+        {d:'خصم الفوائد والبنود غير العادية ثم ضريبة الدخل للوصول إلى صافي الربح',s:['الفوائد','غير عاديه','الضريبه','ضريبة الدخل'],n:2}],
+  ref:'المبيعات − مردودات المبيعات = صافي المبيعات ← − تكلفة المبيعات = مجمل الربح ← + إيرادات أخرى − مصروفات بيعية وإدارية = صافي أرباح النشاط ← ± بنود غير عادية ← − الفوائد ← − ضريبة الدخل = صافي الربح بعد الضريبة.'},
+ {ty:'essay',pts:5,q:'أُعدّت بضاعة آخر المدة بالتكلفة بمبلغ 40,000 بينما قيمتها السوقية في نهاية الفترة 36,000. أي القيمتين تُستخدم في القوائم؟ ولماذا؟ وما أثر ذلك على مجمل الربح؟',
+  keys:[{d:'تُستخدم القيمة السوقية 36,000 (التكلفة أو السوق أيهما أقل)',s:['36000','36'],n:1},
+        {d:'التعليل: تطبيقًا لمبدأ الحيطة والحذر',s:['الحيطه','الحذر'],n:1},
+        {d:'الأثر: انخفاض قيمة المخزون يزيد تكلفة المبيعات فينخفض مجمل الربح',s:['تكلفة المبيعات','مجمل الربح','تنخفض','ينخفض','انخفاض'],n:2}],
+  ref:'تُقيَّم بـ 36,000 تطبيقًا لقاعدة التكلفة أو السوق أيهما أقل ومبدأ الحيطة، فيزيد ذلك تكلفة المبيعات 4,000 وينخفض مجمل الربح بنفس المقدار.'}
+]}
+);
+</script>
+
+<script>
+EX.push(
+{ id:'ch3', n:'3', t:'معادلة الميزانية وتحليل العمليات', d:'حالات تحليل أثر العمليات على عناصر المعادلة', items:[
+ {ty:'mcq',pts:2,q:'بدأ رجل أعمال نشاطه بـ 500,000 نقدًا، ثم اشترى بضاعة بـ 80,000 على الحساب وسدّد 30,000 منها نقدًا. إجمالي الأصول بعد العمليات الثلاث:',o:['500,000','550,000','580,000','530,000'],a:1,e:'النقدية = 500,000 − 30,000 = 470,000، والبضاعة 80,000، فيكون الإجمالي 550,000 (والدائنون 50,000).'},
+ {ty:'mcq',pts:2,q:'تحصيل 15,000 نقدًا من المدينين أثره على المعادلة:',o:['زيادة إجمالي الأصول 15,000','نقص إجمالي الأصول 15,000','زيادة أصل ونقص أصل آخر دون تغيير الإجمالي','زيادة حقوق الملكية 15,000'],a:2,e:'تزيد الخزينة وتنقص المدينون بنفس المقدار فلا يتغير إجمالي الأصول.'},
+ {ty:'mcq',pts:2,q:'سجّل المالك سداد 20,000 من التزاماته الشخصية من صندوق المنشأة. المعالجة الصحيحة:',o:['تُحمَّل مصروفًا على المنشأة','تُخصم من حقوق الملكية كمسحوبات شخصية','تُسجَّل أصلًا مدينًا على المالك','تُسجَّل ضمن الخصوم'],a:1,e:'تطبيقًا لفرض الشخصية المعنوية المستقلة؛ معاملات المالك الشخصية لا تُحمَّل على المنشأة إلا كمسحوبات.'},
+ {ty:'num',pts:4,q:'رأس المال 400,000 · الأرباح المحتجزة 60,000 · المسحوبات الشخصية 25,000 · الخصوم 150,000. احسب إجمالي الأصول.',
+  keys:[{d:'إجمالي الأصول = 585,000',s:['585000'],n:1}],
+  ref:'حقوق الملكية = 400,000 + 60,000 − 25,000 = 435,000، وإجمالي الأصول = 435,000 + 150,000 = 585,000.'},
+ {ty:'tf',pts:1,q:'شراء أصل ثابت بالأجل يزيد إجمالي الأصول وإجمالي الالتزامات بنفس المقدار.',a:0,e:'لأن الطرف المدين أصل (الأثاث) والطرف الدائن التزام (الدائنون).'},
+ {ty:'tf',pts:1,q:'المسحوبات الشخصية للمالك تُصنَّف ضمن الخصوم لأنها التزام على المنشأة.',a:1,e:'تُخصم من حقوق الملكية ولا تُعتبر التزامًا على المنشأة.'},
+ {ty:'essay',pts:5,q:'اشترت منشأة سيارة بـ 300,000: دفعت 80,000 نقدًا والباقي تعهّدت بسداده بموجب كمبيالة. حلّل أثر العملية على عناصر معادلة الميزانية موضحًا الزيادة والنقص في كل عنصر.',
+  keys:[{d:'زيادة الأصول الثابتة (السيارة) 300,000',s:['السياره','سياره','300'],n:2},
+        {d:'نقص النقدية/الخزينة 80,000',s:['الخزينه','النقديه','80'],n:2},
+        {d:'ظهور التزام جديد (أوراق الدفع) 220,000',s:['اوراق دفع','الكمبياله','التزام','220'],n:2}],
+  ref:'تزيد الأصول الثابتة 300,000 (السيارة) وتنقص الخزينة 80,000، ويظهر التزام بأوراق الدفع 220,000. المعادلة: الأصول = 300,000 − 80,000 نقدًا… والإجمالي يزيد 220,000 في مقابل زيادة الالتزام بنفس المقدار.'},
+ {ty:'essay',pts:5,q:'حلّل أثر العمليات الآتية على الأصول والخصوم وحقوق الملكية: (أ) استثمار المالك 100,000 نقدًا. (ب) بيع بضاعة تكلفتها 20,000 بمبلغ 35,000 نقدًا. (ج) دفع إيجار 6,000 نقدًا.',
+  keys:[{d:'(أ) زيادة الأصول النقدية 100,000 وزيادة حقوق الملكية (رأس المال) بنفس المقدار',s:['راس المال','حقوق الملكيه','100'],n:2},
+        {d:'(ب) زيادة النقدية 35,000 ونقص البضاعة 20,000 وزيادة حقوق الملكية بالفرق 15,000',s:['البضاعه','15','الفرق','النقديه'],n:2},
+        {d:'(ج) نقص الأصول النقدية 6,000 ونقص حقوق الملكية بنفس المقدار',s:['الايجار','6'],n:2}],
+  ref:' (أ) أصل +100,000 وحقوق ملكية +100,000. (ب) نقدية +35,000 وبضاعة −20,000 وحقوق ملكية +15,000 (صافي الربح). (ج) نقدية −6,000 وحقوق ملكية −6,000 (مصروف).'}
+]},
+{ id:'ch4', n:'4', t:'الدورة المحاسبية والقيود وحسابات الأستاذ', d:'قيود يومية · ترصيد · ميزان مراجعة', items:[
+ {ty:'mcq',pts:2,q:'الخطوة الثالثة في الدورة المحاسبية هي:',o:['تحليل العمليات من المستندات','تسجيل العمليات في دفتر اليومية','الترحيل إلى دفتر الأستاذ','إعداد ميزان المراجعة'],a:2,e:'الترتيب: تحليل ← يومية ← أستاذ ← ميزان مراجعة ← تسويات جردية.'},
+ {ty:'tf',pts:1,q:'تُجرى التسويات الجردية بعد إعداد ميزان المراجعة وقبل إعداد القوائم المالية.',a:0,e:'ثم يُعدّ ميزان مراجعة بعد التسويات تمهيدًا للقوائم.'},
+ {ty:'num',pts:3,q:'بدأ نشاطه بـ 200,000 نقدًا، ثم اشترى أثاثًا بـ 60,000 نقدًا، ثم اشترى بضاعة بـ 40,000 على الحساب. احسب رصيد حـ/ الخزينة.',
+  keys:[{d:'رصيد الخزينة مدين 140,000',s:['140000'],n:1}],
+  ref:'200,000 − 60,000 = 140,000 مدين، ولا تؤثر عملية الشراء بالأجل على الخزينة.'},
+ {ty:'je',pts:6,q:'اكتب قيود اليومية للعمليات الآتية: (1) بدء النشاط برأس مال 200,000 نقدًا. (2) شراء أثاث بـ 60,000 نقدًا. (3) شراء بضاعة بـ 40,000 على الحساب.',
+  keys:[{d:'الخزينة مدين / رأس المال دائن 200,000',s:['الخزينه','راس المال','200'],n:2},
+        {d:'الأثاث (أصل ثابت) مدين 60,000 / الخزينة دائنة',s:['الاثاث','60'],n:2},
+        {d:'المشتريات مدين 40,000 / الدائنون دائن',s:['المشتريات','الدائنون','40'],n:2}],
+  ref:'(1) من حـ/ الخزينة 200,000 إلى حـ/ رأس المال 200,000. (2) من حـ/ الأثاث 60,000 إلى حـ/ الخزينة 60,000. (3) من حـ/ المشتريات 40,000 إلى حـ/ الدائنون 40,000.'},
+ {ty:'mcq',pts:2,q:'حساب مجموع مدينه 90,000 ومجموع دائنه 65,000، فرصيده:',o:['مدين 25,000','دائن 25,000','مدين 155,000','لا يوجد رصيد'],a:0,e:'الرصيد مدين عندما يكون مجموع المدين أكبر.'},
+ {ty:'mcq',pts:2,q:'الحساب الذي طبيعته دائنة من الحسابات الآتية:',o:['المصروفات المقدمة','أوراق القبض','مردودات المبيعات','المشتريات'],a:2,e:'مردودات المبيعات تُخصم من الإيراد فطبيعتها دائنة، أما المصروفات المقدمة وأوراق القبض فأصول مدينة.'},
+ {ty:'essay',pts:5,q:'ما الهدف من إعداد ميزان المراجعة؟ واذكر أنواعه الثلاثة، ثم بيّن نوع الخطأ الذي لا يستطيع كشفه مع التعليل.',
+  keys:[{d:'الهدف: التحقق من صحة التسجيل والترحيل والترصيد وتوازن مجموع المدين مع الدائن',s:['التسجيل','الترحيل','الترصيد','التوازن','توازن'],n:2},
+        {d:'الأنواع الثلاثة: بالمجاميع / بالأرصدة / بالمجاميع والأرصدة',s:['المجاميع','الارصده','بالارصده'],n:2},
+        {d:'لا يكشف الخطأ المعوَّض لأن الميزان يبقى متوازنًا',s:['معوض','المعوضه','متوازن'],n:2}],
+  ref:'الهدف: كشف الأخطاء المرتكبة وقت التسجيل والترحيل والترصيد والتأكد من تساوي مجموع الأرصدة المدينة والدائنة. وأنواعه: بالمجاميع، وبالأرصدة، وبالمجاميع والأرصدة. أما الخطأ المعوَّض فلا يكشفه لأن الخطأ يعوّضه خطأ آخر بنفس المقدار فيبقى الميزان متوازنًا.'},
+ {ty:'essay',pts:5,q:'هل يمكن أن يكون ميزان المراجعة متوازنًا ومع ذلك توجد أخطاء محاسبية؟ اشرح بمثالين مختلفين.',
+  keys:[{d:'نعم يمكن أن يتوازن الميزان وتوجد أخطاء',s:['نعم','يمكن','يصح','موجود'],n:1},
+        {d:'المثال الأول: الخطأ المعوَّض (خطأ يعوّضه خطأ آخر بنفس المقدار)',s:['معوض','المعوضه'],n:1},
+        {d:'المثال الثاني: إغفال قيد بالكامل أو تسجيل مبلغ خاطئ في طرفي القيد',s:['اغفال','إغفال','حذف','سهو','عدم تسجيل','مبلغ خاطئ','طرفي القيد'],n:2}],
+  ref:'نعم. مثال (1): الخطأ المعوَّض كتسجيل المشتريات بدل شراء أصل ثابت بنفس المقدار. مثال (2): إغفال تسجيل قيد بالكامل أو ترحيله أو تسجيل مبلغ خاطئ في طرفي القيد بالزيادة أو النقصان بنفس المقدار — فيبقى الميزان متوازنًا مع وجود الأخطاء.'}
+]}
+);
+</script>
+
+<script>
+EX.push(
+{ id:'ch5', n:'5', t:'العمليات التجارية والشيكات والخصومات', d:'شروط البيع · الشيكات · المردودات', items:[
+ {ty:'mcq',pts:2,q:'باعت شركة بضاعة بـ 40,000 بشرط 2/10 صافي 30، وسدّد العميل بعد 8 أيام. صافي المبلغ المحصَّل نقدًا:',o:['40,000','39,200','38,000','39,600'],a:1,e:'الخصم = 40,000 × 2% = 800، فيكون المحصَّل 39,200.'},
+ {ty:'num',pts:4,q:'باع بـ 75,000 بشرط 3/15 صافي 45، وسدّد العميل بعد 12 يومًا. احسب الخصم المسموح به وصافي النقدية المحصَّلة.',
+  keys:[{d:'الخصم المسموح به = 2,250',s:['2250'],n:1},
+        {d:'صافي النقدية المحصَّلة = 72,750',s:['72750'],n:1}],
+  ref:'الخصم = 75,000 × 3% = 2,250 (لأن السداد خلال 15 يومًا)، والنقدية = 75,000 − 2,250 = 72,750.'},
+ {ty:'mcq',pts:2,q:'استُلم شيك من عميل وسُجِّل في «شيكات تحت التحصيل»، ثم أبلغ البنك برفضه. القيد الصحيح:',o:['من حـ/ المدينين إلى حـ/ شيكات تحت التحصيل','من حـ/ شيكات تحت التحصيل إلى حـ/ المدينين','من حـ/ البنك إلى حـ/ المدينين','لا يُجرى أي قيد'],a:0,e:'يعود الدين على العميل فتصبح ذمّته مدينة من جديد.'},
+ {ty:'mcq',pts:2,q:'صدر شيك من المنشأة للمورد وسُجِّل سدادًا، ثم أبلغها البنك برفض الشيك. القيد الصحيح:',o:['من حـ/ الخزينة إلى حـ/ الدائنين','من حـ/ الدائنين إلى حـ/ البنك','من حـ/ البنك إلى حـ/ الدائنين','من حـ/ الدائنين إلى حـ/ الخزينة'],a:1,e:'يُعكس قيد السداد: يُبرَّد الدائنون ويصبح البنك مدينًا.'},
+ {ty:'je',pts:6,q:'اكتب قيود العمليات الآتية: (1) بيع بضاعة بـ 50,000 على الحساب. (2) تحصيل 30,000 نقدًا من العميل. (3) ردّ بضاعة مشتراة نقدًا بـ 5,000 إلى المورد.',
+  keys:[{d:'المدينون مدين 50,000 / المبيعات دائنة',s:['المدينون','50000'],n:2},
+        {d:'الخزينة مدين 30,000 / المدينون دائن',s:['الخزينه','30000'],n:2},
+        {d:'الخزينة دائنة 5,000 / مردودات المشتريات مدينة',s:['مردودات المشتريات','5000'],n:2}],
+  ref:'(1) من حـ/ المدينون 50,000 إلى حـ/ المبيعات 50,000. (2) من حـ/ الخزينة 30,000 إلى حـ/ المدينون 30,000. (3) من حـ/ الخزينة 5,000 إلى حـ/ مردودات المشتريات 5,000.'},
+ {ty:'essay',pts:5,q:'اشترت منشأة بضاعة بـ 60,000 بشرط 2/10 صافي 30، ولم تسدّد إلا في اليوم الخامس والثلاثين. هل تستحق خصمًا؟ ولماذا؟ وما القيد الصحيح عند السداد؟',
+  keys:[{d:'لا تستحق خصمًا لأن السداد جاء بعد انتهاء فترة الخصم (10 أيام)',s:['لا تستحق','لا يستحق','لا خصم','بعد انتهاء','بعد'],n:2},
+        {d:'التعليل: الخصم النقدي مشروط بالسداد خلال فترة الخصم الممنوحة',s:['فترة الخصم','خلال','شرط','مشروط'],n:1},
+        {d:'القيد: من حـ/ الدائنين 60,000 إلى حـ/ الخزينة (أو البنك) 60,000 بدون خصم',s:['الدائنين','60000'],n:2}],
+  ref:'لا تستحق خصمًا لأن مدة الخصم 10 أيام فقط والعميل سدّد في اليوم 35، فيكون القيد: من حـ/ الدائنين 60,000 إلى حـ/ الخزينة 60,000 دون أي خصم.'},
+ {ty:'essay',pts:5,q:'وضّح الفرق بين الخصم التجاري والخصم النقدي من حيث: توقيت الاحتساب، والإثبات في الدفاتر، والقيمة المسجَّلة في الفاتورة.',
+  keys:[{d:'التوقيت: التجاري يُحسب عند البيع مباشرة، والنقدي عند السداد خلال فترة الخصم',s:['عند البيع','وقت البيع','عند السداد','السداد'],n:2},
+        {d:'الإثبات: التجاري لا يُفتح له حساب، والنقدي يُثبت بحساب مستقل',s:['لا يفتح','لا يثبت','حساب مستقل'],n:2},
+        {d:'القيمة المسجَّلة: تُسجَّل الفاتورة بصافي القيمة بعد الخصم التجاري',s:['صافي','الصافي','الصافيه'],n:1}],
+  ref:'الخصم التجاري يُحسب فورًا على إجمالي الفاتورة عند البيع ولا يُفتح له حساب وتُسجَّل الفاتورة بالصافي، أما الخصم النقدي فيُحسب عند السداد خلال فترة الخصم ويُثبت بحساب مستقل (مكتسب إيراد للمشتري ومسموح به مصروف للبائع).'},
+ {ty:'essay',pts:5,q:'اذكر أركان الشيك الخمسة والأطراف الثلاثة فيه، ثم وضّح الفرق الجوهري بين الشيك والكمبيالة.',
+  keys:[{d:'الأركان: التاريخ · اسم المستفيد · اسم البنك · المبلغ بالأرقام والحروف · توقيع الساحب',s:['التاريخ','المستفيد','البنك','المبلغ','التوقيع'],n:3},
+        {d:'الأطراف: الساحب · المسحوب عليه (البنك) · المستفيد',s:['الساحب','المسحوب عليه','المستفيد'],n:2},
+        {d:'الفرق: الشيك أمر بالدفع بمجرد الاطلاع على البنك من رصيد سابق، والكمبيالة تعهّد بالسداد في أجل مستقبلي',s:['امر','اطلاع','تعهد','اجل','رصيد'],n:2}],
+  ref:'الأركان: التاريخ، اسم المستفيد، اسم البنك المسحوب عليه، المبلغ بالأرقام والحروف، توقيع الساحب. والأطراف: الساحب والمستفيد والبنك. والفرق: الشيك أمر بدفع مبلغ بمجرد الاطلاع لحامله أو للمستفيد من رصيد سابق، أما الكمبيالة فتعهّد كتابي بدفع مبلغ محدد في تاريخ مستقبلي (أجل) وتُستخدم بين التجار في البيع بالأجل.'}
+]},
+{ id:'ch6', n:'6', t:'الأوراق التجارية — الكمبيالات وحالاتها', d:'الأجيو · الخصم · التظهير · التجديد · الإفلاس', items:[
+ {ty:'mcq',pts:2,q:'باعت شركة بالآجل وحرّرت كمبيالة. إثبات الكمبيالة في دفاتر البائع والمشتري على الترتيب يكون في:',o:['أوراق الدفع / أوراق القبض','أوراق القبض / أوراق الدفع','المدينون / الدائنون','لا تُثبت في الدفاتر'],a:1,e:'البائع له أوراق قبض (حق)، والمشتري عليه أوراق دفع (التزام).'},
+ {ty:'num',pts:3,q:'كمبيالة قيمتها 150,000 خُصمت لدى البنك بمعدل خصم 12% سنويًا لمدة 3 شهور. احسب قيمة الأجيو.',
+  keys:[{d:'الأجيو = 4,500',s:['4500'],n:1}],
+  ref:'الأجيو = 150,000 × 12 ÷ 100 × (3 ÷ 12) = 4,500.'},
+ {ty:'num',pts:3,q:'استكمالًا للسؤال السابق: ما صافي المبلغ الذي يودعه البنك في حساب المشروع؟',
+  keys:[{d:'صافي المبلغ = 145,500',s:['145500'],n:1}],
+  ref:'صافي القيمة = 150,000 − 4,500 = 145,500.'},
+ {ty:'je',pts:6,q:'اكتب قيود البائع عند: (1) البيع الآجل بـ 150,000. (2) تحرير كمبيالة بنفس القيمة. (3) خصم الكمبيالة لدى البنك والأجيو 4,500.',
+  keys:[{d:'المدينون مدين 150,000 / المبيعات دائنة',s:['المدينون','150'],n:2},
+        {d:'أوراق القبض مدينة 150,000 / المدينون دائن',s:['اوراق القبض','150'],n:2},
+        {d:'من أوراق قبض برسم الخصم إلى أوراق القبض 150,000',s:['برسم الخصم','150'],n:2},
+        {d:'مصروفات خصم الكمبيالة 4,500 والبنك 145,500',s:['4500','145500'],n:2}],
+  ref:'(1) من حـ/ المدينون 150,000 إلى حـ/ المبيعات 150,000. (2) من حـ/ أوراق القبض 150,000 إلى حـ/ المدينون 150,000. (3) من حـ/ أوراق قبض برسم الخصم 150,000 إلى حـ/ أوراق القبض 150,000، ثم من حـ/ مصروفات خصم الكمبيالة 4,500 + حـ/ البنك 145,500 إلى حـ/ أوراق قبض برسم الخصم 150,000.'},
+ {ty:'mcq',pts:2,q:'عند إرسال الكمبيالة إلى البنك للتحصيل، القيود في دفاتر المشتري (المسحوب عليه):',o:['من حـ/ أوراق الدفع إلى حـ/ البنك','من حـ/ البنك إلى حـ/ أوراق الدفع','لا تُجرى أي قيود','من حـ/ المدينون إلى حـ/ أوراق الدفع'],a:2,e:'العملية قاصرة على حائز الكمبيالة والبنك؛ المشتري يسدّد في ميعاد الاستحقاق فقط.'},
+ {ty:'tf',pts:1,q:'الأجيو يُعتبر مصروفًا مستحقًا في دفاتر حائز الكمبيالة.',a:0,e:'وهو رسم تحصل عليه البنوك مقابل الخصم.'},
+ {ty:'essay',pts:6,q:'رفض المسحوب عليه سداد كمبيالة قيمتها 200,000، فطلبت المنشأة البروتستو بمصروفات قضائية 4,000، ثم اتُّفق على تجديد الكمبيالة 3 شهور بفائدة 12% سنويًا. اكتب المعالجة المحاسبية موضحًا القيمة الجديدة.',
+  keys:[{d:'إثبات الرفض: من حـ/ المدينون إلى حـ/ أوراق القبض 200,000',s:['المدينون','200'],n:2},
+        {d:'تحميل مصروفات البروتستو على المسحوب عليه 4,000',s:['البروتستو','4000'],n:2},
+        {d:'حساب الفوائد = 200,000 × 12% × 3/12 = 6,000',s:['6000','الفوائد'],n:2},
+        {d:'القيمة الجديدة للكمبيالة = 210,000 تُثبت كأوراق قبض جديدة',s:['210000','القيمه الجديده','اوراق قبض'],n:2}],
+  ref:'(1) عند الرفض: من حـ/ المدينون 200,000 إلى حـ/ أوراق القبض 200,000. (2) مصروفات البروتستو 4,000 تُحمَّل على المسحوب عليه: من حـ/ المدينون 4,000 إلى حـ/ الخزينة 4,000. (3) الفوائد = 200,000 × 12% × 3/12 = 6,000، فتصبح القيمة الجديدة 200,000 + 4,000 + 6,000 = 210,000، ويُجرى القيد: من حـ/ أوراق القبض (الجديدة) 210,000 إلى حـ/ المدينون 210,000.'},
+ {ty:'essay',pts:5,q:'اذكر احتمالات التصرف السبعة في الكمبيالة بعد تحريرها وقبولها، وبيّن في أي حالة تُقفل حـ/ أوراق القبض.',
+  keys:[{d:'الاحتفاظ حتى ميعاد الاستحقاق',s:['الاحتفاظ','الاستحقاق'],n:1},
+        {d:'إرسالها للبنك للتحصيل نيابة عن حائزها',s:['للتحصيل','التحصيل'],n:1},
+        {d:'التظهير (التحويل) لطرف ثالث لسداد المستحق له',s:['التظهير','التحويل','تحويل'],n:1},
+        {d:'خصمها (قطعها) لدى البنك والحصول على قيمتها الحالية بعد الأجيو',s:['الخصم','خصم','الاجيو'],n:1},
+        {d:'تقديمها كضمان للحصول على قرض أو عند عدم كفاية الضمانات',s:['ضمان','قرض'],n:1},
+        {d:'تجديدها بعد الرفض بمدّ الأجل مقابل فوائد ومصروفات',s:['تجديد','التجديد'],n:1},
+        {d:'إفلاس المسحوب عليه: تحصيل جزئي أو ديون معدومة',s:['افلاس','الافلاس','معدوم','معدومه'],n:1}],
+  ref:'الاحتفاظ بها حتى الاستحقاق · إرسالها للبنك للتحصيل · تظهيرها لطرف ثالث · خصمها لدى البنك · تقديمها كضمان · تجديدها · إفلاس المسحوب عليه. ويُقفل حـ/ أوراق القبض عند التحصيل النقدي أو الخصم أو التظهير أو الإفلاس (تحويلها إلى ديون معدومة).'}
+]}
+);
+</script>
+
+<script>
+EX.push(
+{ id:'ch7', n:'7', t:'معالجة الأخطاء المحاسبية', d:'تشخيص الخطأ · الأثر · التصحيح', items:[
+ {ty:'mcq',pts:2,q:'خلطت المنشأة بين مصروف الصيانة (مصروف إيرادي) وتكلفة تحسين المبنى (مصروف رأسمالي)، فأثبتت الاثنين في حـ/ المباني. نوع الخطأ:',o:['حذف أو سهو','ارتكاب','فني','معوَّض'],a:2,e:'الخطأ الفني = عدم التطبيق السليم للمبادئ والقواعد، كالخلط بين الإيرادي والرأسمالي.'},
+ {ty:'mcq',pts:2,q:'أُغفل تسجيل قيد شراء بضاعة بالأجل بالكامل في دفتر اليومية. نوع الخطأ:',o:['حذف أو سهو','ارتكاب','فني','معوَّض'],a:0,e:'عدم تسجيل عملية أو ترحيلها أو إهمال أحد طرفي القيد = خطأ حذف أو سهو.'},
+ {ty:'mcq',pts:2,q:'رُحِّل مبلغ 12,000 من حـ/ المشتريات إلى حـ/ المبيعات بالخطأ. نوع الخطأ:',o:['حذف أو سهو','ارتكاب','فني','معوَّض'],a:1,e:'ترحيل مبلغ صحيح إلى حساب مخالف يُعدّ من أخطاء الارتكاب.'},
+ {ty:'mcq',pts:2,q:'أي الأخطاء الآتية يجعل ميزان المراجعة غير متوازن؟',o:['الخطأ المعوَّض','إغفال تسجيل قيد بالكامل','ترحيل طرف واحد من القيد فقط','إثبات مصروف إيرادي كرأسمالي'],a:2,e:'لأن أحد الطرفين فقط يظهر في الأستاذ فيختل التوازن، أما إغفال القيد كاملًا يحفظ التوازن.'},
+ {ty:'tf',pts:1,q:'الخطأ المعوَّض يظهر عند إعداد ميزان المراجعة.',a:1,e:'يُبقي الميزان متوازنًا فلا يكشفه، ولهذا سُمّي معوَّضًا.'},
+ {ty:'tf',pts:1,q:'يجوز تصحيح الأخطاء بالكشط في الدفاتر مع الاحتفاظ بالأثر.',a:1,e:'الكشط ممنوع تمامًا، والإلغاء يكون بقيد عكسي في دفتر اليومية.'},
+ {ty:'essay',pts:5,q:'اكتشفت شركة أن مصروفات إعلانات بـ 30,000 سُجِّلت ضمن حـ/ المباني (أصل ثابت). بيّن نوع الخطأ، وأثره على صافي ربح السنة وعلى الأصول، ثم اكتب طريقة تصحيحه.',
+  keys:[{d:'نوع الخطأ: خطأ فني (خلط مصروف إيرادي برأسمالي / عدم تطبيق القواعد)',s:['فني','ايرادي','راسمالي'],n:2},
+        {d:'الأثر: تضخيم الأصول بمقدار 30,000 وتضخيم صافي الربح بنفس المقدار',s:['تضخيم','زيادة','الاصول','الربح'],n:3},
+        {d:'التصحيح: من حـ/ المباني إلى حـ/ مصروفات الإعلان (أو الأرباح المحتجزة)',s:['المباني','الاعلان','الاعلانات','محتجزه'],n:2}],
+  ref:'خطأ فني ناتج عن الخلط بين المصروف الإيرادي والرأسمالي. أثره: تضخيم قيمة الأصول بمقدار 30,000 وتضخيم صافي ربح السنة بنفس المقدار. والتصحيح: من حـ/ المباني 30,000 إلى حـ/ مصروفات الإعلان 30,000 (أو إلى الأرباح المحتجزة إن كان الخطأ في سنة سابقة).'},
+ {ty:'je',pts:6,q:'سُجِّل قيد شراء بضاعة بالأجل بمبلغ 80,000 بالخطأ كالآتي: من حـ/ المشتريات 80,000 — إلى حـ/ الدائنون 30,000. صحّح الخطأ بالطريقة المطوّلة موضحًا الخطوتين.',
+  keys:[{d:'الخطوة الأولى: إلغاء القيد الخطأ من حـ/ الدائنون 30,000 إلى حـ/ المشتريات 80,000',s:['الدائنون','30000','المشتريات'],n:3},
+        {d:'الخطوة الثانية: إثبات القيد الصحيح من حـ/ المشتريات 80,000 إلى حـ/ الدائنون 80,000',s:['المشتريات','80000','الدائنون'],n:3},
+        {d:'الإلغاء بقيد عكسي دون كشط في الدفاتر',s:['الكشط','كشط','دون كشط','لا يكشط'],n:1}],
+  ref:'الخطوة (1): من حـ/ الدائنون 30,000 إلى حـ/ المشتريات 80,000. الخطوة (2): من حـ/ المشتريات 80,000 إلى حـ/ الدائنون 80,000. ولا يُجرى أي كشط أو تعديل في الدفاتر.'}
+]},
+{ id:'m1', n:'أ', t:'نموذج امتحان (أ)', d:'امتحان شامل بنمط الميد-تيرم — 12 سؤالًا في 45 دقيقة', timed:1, mins:45, items:[
+ {ty:'tf',pts:2,q:'المحاسبة المالية تهتم بقياس الأحداث الاقتصادية التاريخية والمستقبلية.',a:0,e:'قياس ما حدث فعلًا وما يُتوقع حدوثه.'},
+ {ty:'mcq',pts:2,q:'القائمة المالية الوحيدة التي تُعدّ على الأساس النقدي هي:',o:['قائمة الدخل','قائمة المركز المالي','قائمة التدفقات النقدية','قائمة التغيرات في حقوق الملكية'],a:2,e:'باقي القوائم على أساس الاستحقاق.'},
+ {ty:'mcq',pts:2,q:'الفرض الذي يعتبر المنشأة كيانًا مستقلًا عن مالكيها هو:',o:['الاستمرارية','القياس النقدي','الشخصية المعنوية المستقلة','ثبات وحدة النقد'],a:2,e:'لذلك تُفصل معاملات المالك الشخصية عن معاملات المنشأة.'},
+ {ty:'num',pts:3,q:'بضاعة أول المدة 25,000 · المشتريات 95,000 · نقل المشتريات 4,000 · مردودات المشتريات 3,000 · بضاعة آخر المدة 20,000. احسب تكلفة المبيعات.',
+  keys:[{d:'تكلفة المبيعات = 101,000',s:['101000'],n:1}],
+  ref:'المتاح للبيع = 25,000 + 95,000 + 4,000 − 3,000 = 121,000، وتكلفة المبيعات = 121,000 − 20,000 = 101,000.'},
+ {ty:'num',pts:3,q:'استكمالًا: المبيعات 140,000 · مردودات المبيعات 6,000 · تكلفة المبيعات 101,000. احسب مجمل الربح.',
+  keys:[{d:'مجمل الربح = 33,000',s:['33000'],n:1}],
+  ref:'صافي المبيعات = 134,000، ومجمل الربح = 134,000 − 101,000 = 33,000.'},
+ {ty:'num',pts:3,q:'كمبيالة قيمتها 240,000 خُصمت لدى البنك بمعدل 10% سنويًا لمدة 5 شهور. احسب قيمة الأجيو.',
+  keys:[{d:'الأجيو = 10,000',s:['10000'],n:1}],
+  ref:'الأجيو = 240,000 × 10 ÷ 100 × (5 ÷ 12) = 10,000.'},
+ {ty:'mcq',pts:2,q:'حساب مجموع مدينه 120,000 ومجموع دائنه 145,000 فرصيده:',o:['مدين 25,000','دائن 25,000','مدين 265,000','لا يوجد رصيد'],a:1,e:'الرصيد دائن عندما يكون مجموع الدائن أكبر.'},
+ {ty:'je',pts:6,q:'اكتب قيود اليومية: (1) بدء النشاط برأس مال 300,000 نقدًا. (2) شراء بضاعة بـ 70,000 على الحساب. (3) بيع بضاعة بـ 45,000 نقدًا.',
+  keys:[{d:'الخزينة مدين / رأس المال دائن 300,000',s:['الخزينه','راس المال','300'],n:2},
+        {d:'المشتريات مدين 70,000 / الدائنون دائن',s:['المشتريات','الدائنون','70'],n:2},
+        {d:'الخزينة مدين 45,000 / المبيعات دائنة',s:['الخزينه','المبيعات','45'],n:2}],
+  ref:'(1) من حـ/ الخزينة 300,000 إلى حـ/ رأس المال 300,000. (2) من حـ/ المشتريات 70,000 إلى حـ/ الدائنون 70,000. (3) من حـ/ الخزينة 45,000 إلى حـ/ المبيعات 45,000.'},
+ {ty:'essay',pts:5,q:'وضّح الفرق بين أساس الاستحقاق والأساس النقدي، وبيّن القوائم التي تُعدّ على كل أساس، مع مثال يوضّح الفرق في قياس الربح.',
+  keys:[{d:'الاستحقاق: يُسجَّل الإيراد عند تحققه والمصروف عند تحمّله سواء حُصِّل أو دُفِع نقدًا',s:['عند تحقق','تحقق','استحق','تحمل','سواء'],n:2},
+        {d:'النقدي: يُسجَّل الإيراد عند التحصيل والمصروف عند السداد فقط',s:['التحصيل','السداد','عند الدفع'],n:2},
+        {d:'القوائم: الاستحقاق تُعدّ به الدخل والمركز المالي وحقوق الملكية، والنقدي قائمة التدفقات فقط',s:['التدفقات','الدخل','المركز المالي'],n:2},
+        {d:'مثال: بيع بالآجل 10,000 لم يُحصَّل → يُسجَّل إيرادًا بالاستحقاق ولا يُسجَّل بالنقدي حتى التحصيل',s:['بالاجل','بالآجل','لم يحصل','مثال','بالاجل'],n:1}],
+  ref:'أساس الاستحقاق: تسجيل الإيراد عند تحققه والمصروف عند تحمّله ولو لم يتحرك النقد، وتُعدّ به قائمة الدخل والمركز المالي والتغيرات في حقوق الملكية. الأساس النقدي: التسجيل عند التحصيل والسداد فقط، وتُعدّ به قائمة التدفقات النقدية. مثال: بيع بضاعة بالأجل 10,000 يُسجَّل إيرادًا وفق الاستحقاق، ولا يُسجَّل وفق الأساس النقدي إلا عند تحصيل قيمتها.'},
+ {ty:'mcq',pts:2,q:'الخصم المكتسب بالنسبة للمشتري يُعدّ:',o:['مصروفًا','إيرادًا','أصلًا','التزامًا'],a:1,e:'ويُقابل الخصم المسموح به الذي يُعدّ مصروفًا على البائع.'},
+ {ty:'tf',pts:2,q:'يجب أن يتساوى جانبا الميزانية: الأصول مع (الخصوم + حقوق الملكية).',a:0,e:'وهذه نتيجة مباشرة لقاعدة القيد المزدوج.'},
+ {ty:'essay',pts:5,q:'اشرح أنواع الأخطاء المحاسبية الأربعة مع ذكر مثال لكل نوع، ثم بيّن الطريقة المُفضَّلة في تصحيح الأخطاء.',
+  keys:[{d:'أخطاء الحذف أو السهو: عدم تسجيل عملية أو ترحيلها أو أحد طرفي القيد',s:['الحذف','حذف','سهو','عدم تسجيل'],n:2},
+        {d:'أخطاء الارتكاب: مبلغ مخالف أو اسم حساب خطأ أو تكرار قيد',s:['الارتكاب','ارتكاب','تكرار','اسم الحساب'],n:2},
+        {d:'أخطاء فنية: الخلط بين المصروف الإيرادي والرأسمالي',s:['فني','ايرادي','راسمالي'],n:2},
+        {d:'أخطاء معوَّضة: خطأ يعوّضه خطأ آخر بنفس المقدار فيبقى الميزان متوازنًا',s:['معوض','المعوضه','متوازن'],n:2},
+        {d:'التصحيح المفضَّل: الطريقة المطوّلة بخطوتي الإلغاء ثم الإثبات الصحيح',s:['المطوله','المطولة','الغاء','إلغاء'],n:1}],
+  ref:'(1) حذف أو سهو: عدم تسجيل قيد بالكامل. (2) ارتكاب: ترحيل مبلغ صحيح لحساب مخالف. (3) فني: إثبات مصروف الصيانة ضمن الأصول. (4) معوَّض: خطأ يعوّضه خطأ آخر بنفس المقدار. والطريقة المُفضَّلة هي المطوّلة (إلغاء القيد الخطأ ثم إثبات القيد الصحيح) لأن هناك أخطاء لا يمكن تصحيحها بالطريقة المختصرة.'}
+]},
+{ id:'m2', n:'ب', t:'نموذج امتحان (ب)', d:'نموذج ثانٍ شامل — 12 سؤالًا في 45 دقيقة', timed:1, mins:45, items:[
+ {ty:'tf',pts:2,q:'تُعدّ قائمة المركز المالي عن فترة مالية وليس في تاريخ معيّن.',a:1,e:'تُعدّ في تاريخ معيّن (لحظة محددة)، أما قائمة الدخل فتُعدّ عن فترة.'},
+ {ty:'mcq',pts:2,q:'المعادلة الصحيحة لتكلفة المبيعات:',o:['(أول المدة + المشتريات + نقل المشتريات − مردودات المشتريات) − بضاعة آخر المدة','بضاعة آخر المدة + المشتريات − أول المدة','المبيعات − المشتريات','أول المدة + آخر المدة + المشتريات'],a:0,e:'تُحسب تكلفة البضاعة المتاحة للبيع ثم يُخصم منها بضاعة آخر المدة.'},
+ {ty:'num',pts:3,q:'بضاعة أول المدة 60,000 · المشتريات 210,000 · نقل المشتريات 9,000 · مردودات المشتريات 7,000 · بضاعة آخر المدة 50,000. احسب تكلفة المبيعات.',
+  keys:[{d:'تكلفة المبيعات = 222,000',s:['222000'],n:1}],
+  ref:'المتاح للبيع = 60,000 + 210,000 + 9,000 − 7,000 = 272,000، وتكلفة المبيعات = 272,000 − 50,000 = 222,000.'},
+ {ty:'num',pts:3,q:'استكمالًا: المبيعات 320,000 · مردودات المبيعات 12,000 · تكلفة المبيعات 222,000. احسب مجمل الربح.',
+  keys:[{d:'مجمل الربح = 86,000',s:['86000'],n:1}],
+  ref:'صافي المبيعات = 308,000، ومجمل الربح = 308,000 − 222,000 = 86,000.'},
+ {ty:'num',pts:4,q:'باع بـ 90,000 بشرط 2/10 صافي 30 وسدّد العميل بعد 6 أيام. احسب الخصم المسموح به وصافي النقدية المحصَّلة.',
+  keys:[{d:'الخصم المسموح به = 1,800',s:['1800'],n:1},
+        {d:'صافي النقدية = 88,200',s:['88200'],n:1}],
+  ref:'الخصم = 90,000 × 2% = 1,800 والنقدية = 88,200.'},
+ {ty:'num',pts:3,q:'كمبيالة قيمتها 180,000 خُصمت لدى البنك بمعدل 15% سنويًا لمدة 4 شهور. احسب قيمة الأجيو.',
+  keys:[{d:'الأجيو = 9,000',s:['9000'],n:1}],
+  ref:'الأجيو = 180,000 × 15 ÷ 100 × (4 ÷ 12) = 9,000.'},
+ {ty:'mcq',pts:2,q:'صدر شيك من المنشأة للمورد ثم أبلغها البنك برفضه. القيد الصحيح:',o:['من حـ/ الخزينة إلى حـ/ الدائنون','من حـ/ الدائنون إلى حـ/ البنك','من حـ/ البنك إلى حـ/ الدائنون','من حـ/ الدائنون إلى حـ/ الخزينة'],a:1,e:'عكس قيد السداد السابق.'},
+ {ty:'mcq',pts:2,q:'الخطأ المعوَّض يُوصَف بأنه خطير لأن:',o:['يظهر في قائمة الدخل','يجعل ميزان المراجعة غير متوازن','يُبقي ميزان المراجعة متوازنًا فلا يكشفه','يوقف العمل المحاسبي'],a:2,e:'لهذا يجب الاعتماد على مراجعة القيود والحسابات وليس على ميزان المراجعة فقط.'},
+ {ty:'je',pts:6,q:'اكتب قيود اليومية: (1) بيع بضاعة بـ 60,000 على الحساب. (2) تحصيل 40,000 نقدًا من العميل. (3) شراء بضاعة بـ 25,000 على الحساب.',
+  keys:[{d:'المدينون مدين 60,000 / المبيعات دائنة',s:['المدينون','60000'],n:2},
+        {d:'الخزينة مدين 40,000 / المدينون دائن',s:['الخزينه','40000'],n:2},
+        {d:'المشتريات مدين 25,000 / الدائنون دائن',s:['المشتريات','الدائنون','25000'],n:3}],
+  ref:'(1) من حـ/ المدينون 60,000 إلى حـ/ المبيعات 60,000. (2) من حـ/ الخزينة 40,000 إلى حـ/ المدينون 40,000. (3) من حـ/ المشتريات 25,000 إلى حـ/ الدائنون 25,000.'},
+ {ty:'essay',pts:5,q:'اشرح معادلة الميزانية بصورها الحسابية الأربع، مع مثال رقمي يوضّح كل صورة.',
+  keys:[{d:'الأصول = الخصوم + حقوق الملكية (رأس المال)',s:['الاصول','الخصوم','حقوق الملكيه','راس المال'],n:3},
+        {d:'الأصول − الخصوم = رأس المال',s:['الاصول','الخصوم','راس المال'],n:3},
+        {d:'صافي قيمة الأصول = الأصول − الخصوم',s:['صافي قيمة الاصول','صافي القيمه','صافي'],n:1},
+        {d:'مثال رقمي وتطبيقه على الأرقام',s:['مثال','100','50000','1000'],n:1}],
+  ref:'الصور: (1) الأصول = الخصوم + رأس المال. (2) الأصول − الخصوم = رأس المال. (3) الأصول − الخصوم = صافي قيمة الأصول. (4) صافي قيمة الأصول = رأس المال. مثال: أصول 300,000 = خصوم 80,000 + رأس مال 220,000، ومنها صافي قيمة الأصول = 220,000 وهو نفس رأس المال.'},
+ {ty:'essay',pts:6,q:'باعت منشأة بضاعة بالآجل بـ 180,000 وحرّر المشتري كمبيالة بنفس القيمة، ثم خصمت المنشأة الكمبيالة لدى البنك بعد شهرين بمعدل خصم 15% ومدة الاستحقاق 4 شهور. اكتب المعالجة المحاسبية كاملة محدّدًا الأجيو وصافي المبلغ المودَع.',
+  keys:[{d:'قيد البيع: من حـ/ المدينون 180,000 إلى حـ/ المبيعات 180,000',s:['المدينون','180'],n:2},
+        {d:'تحرير الكمبيالة: من حـ/ أوراق القبض 180,000 إلى حـ/ المدينون 180,000',s:['اوراق القبض','180'],n:2},
+        {d:'الإرسال للخصم: من حـ/ أوراق قبض برسم الخصم إلى حـ/ أوراق القبض 180,000',s:['برسم الخصم','180'],n:2},
+        {d:'الأجيو = 9,000 وصافي المبلغ المودَع = 171,000',s:['9000','171000'],n:2}],
+  ref:'البيع: من حـ/ المدينون 180,000 إلى حـ/ المبيعات 180,000. تحرير الكمبيالة: من حـ/ أوراق القبض 180,000 إلى حـ/ المدينون 180,000. الخصم: من حـ/ أوراق قبض برسم الخصم 180,000 إلى حـ/ أوراق القبض 180,000، ثم الأجيو = 180,000 × 15% × 4/12 = 9,000 فيكون القيد: من حـ/ مصروفات خصم الكمبيالة 9,000 + حـ/ البنك 171,000 إلى حـ/ أوراق قبض برسم الخصم 180,000.'},
+ {ty:'tf',pts:2,q:'الخصم التجاري يُفتح له حساب مستقل في الدفاتر.',a:1,e:'الخصم التجاري لا يُثبت بالدفاتر؛ الذي يُفتح له حساب مستقل هو الخصم النقدي.'}
+]}
+);
+</script>
+
+<script>
+/* ============ مولّد نموذج الميد-تيرم: 30 سؤالًا بنفس التوزيع ============ */
+function shuf(a){
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+function cloneOptShuffle(it){
+  var ty=it.ty||'mcq';
+  if(ty!=='mcq') return it;
+  var pairs=[], i;
+  for(i=0;i<it.o.length;i++) pairs.push({t:it.o[i],ok:(i===it.a)});
+  shuf(pairs);
+  var c={};
+  for(var k in it) c[k]=it[k];
+  c.o=pairs.map(function(p){return p.t;});
+  for(i=0;i<pairs.length;i++){ if(pairs[i].ok){ c.a=i; break; } }
+  return c;
+}
+/* توزيع الميد-تيرم: 10 اختياري + 5 صح/خطأ + 5 مسائل + 5 قيود + 5 مقالي = 30 */
+function buildMidtermModel(avoid){
+  var pool={mcq:[],tf:[],num:[],je:[],essay:[]};
+  EX.forEach(function(s){
+    s.items.forEach(function(it){
+      var t=it.ty||'mcq';
+      if(pool[t]) pool[t].push(it);
+    });
+  });
+  var spec=[['mcq',10],['tf',5],['num',5],['je',5],['essay',5]];
+  var out=[];
+  spec.forEach(function(sp){
+    var arr=shuf(pool[sp[0]].slice());
+    if(avoid&&avoid.length){
+      arr.sort(function(a,b){
+        var x=(avoid.indexOf(a)>=0)?1:0, y=(avoid.indexOf(b)>=0)?1:0;
+        return x-y;
+      });
+    }
+    out=out.concat(arr.slice(0,sp[1]));
+  });
+  return out;
+}
+function initMidterms(){
+  if(!EX||!EX.length) return;
+  var e1=EX.filter(function(s){return s.id==='m1';})[0];
+  var e2=EX.filter(function(s){return s.id==='m2';})[0];
+  var mid1=buildMidtermModel(null);
+  var mid2=buildMidtermModel(mid1);
+  if(e1){
+    e1.items=mid1.map(cloneOptShuffle);
+    e1.mins=60; e1.t='نموذج الميد-تيرم (أ)';
+    e1.d='نفس عدد أسئلة الميد-تيرم: 30 سؤالًا — 10 اختياري · 5 صح/خطأ · 5 مسائل · 5 قيود · 5 مقالي (مع تغيير ترتيب الاختيارات).';
+  }
+  if(e2){
+    e2.items=mid2.map(cloneOptShuffle);
+    e2.mins=60; e2.t='نموذج الميد-تيرم (ب)';
+    e2.d='30 سؤالًا بنفس التوزيع، وأسئلة مختلفة عن النموذج (أ) قدر الإمكان — محاولة تانية بمزاج امتحان مختلف.';
+  }
+  var models=EX.filter(function(s){return s.timed;});
+  var secs=EX.filter(function(s){return !s.timed;});
+  EX=models.concat(secs);
+}
+try{
+  initMidterms();
+  buildHome();
+  var bank=0;
+  EX.forEach(function(s){ if(!s.timed) bank+=s.items.length; });
+  $('sSec').textContent=EX.length;
+  $('sQ').textContent=bank;
+  var mm=EX.filter(function(s){return s.timed;})[0];
+  $('sE').textContent=mm?mm.items.length:0;
+}catch(e){}
 </script>
 
 </body>
